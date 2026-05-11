@@ -1,26 +1,286 @@
 @import "tailwindcss";
 
+@theme {
+  /* Brand colors */
+  --color-porcelain: #F7F3EB;
+  --color-glaze: #F1E8C7;
+  --color-paper: #FFFFFF;
+  --color-ink: #1D1107;
+  --color-clay: #40362E;
+  --color-coal: #242220;
+  --color-earth: #93886F;
+  --color-scrunch-blue: #2A4AEA;
+  --color-cloud-blue: #93C0FE;
+  --color-botanic-green: #6E8920;
+  --color-ai-green: #D8FC3B;
+  --color-viz-blue-300: #93C0FE;
+  --color-viz-blue-500: #3C67F5;
+  --color-viz-blue-800: #1F2CAE;
+  --color-viz-green-400: #AECE31;
+  --color-viz-green-600: #84A027;
+  --color-viz-green-800: #586B16;
+
+  /* Fonts */
+  --font-sans: var(--font-inter), sans-serif;
+  --font-serif: var(--font-newsreader), serif;
+  --font-mono: var(--font-ibm-plex-mono), monospace;
+
+  /* Animations */
+  --animate-fade-in: fadeIn 0.3s ease-out both;
+  --animate-glow-pulse: glowPulse 2.5s ease-in-out infinite;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #F7F3EB;
+  --foreground: #1D1107;
+  --font-inter: "Inter", sans-serif;
+  --font-newsreader: "Newsreader", serif;
+  --font-ibm-plex-mono: "IBM Plex Mono", monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar for code panels */
+.code-scroll::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.code-scroll::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+.code-scroll::-webkit-scrollbar-thumb {
+  background: rgba(216, 252, 59, 0.5);
+  border-radius: 2px;
+}
+
+/* Fade in */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Glow pulse for AXP divider */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 8px 2px rgba(216, 252, 59, 0.4),
+                0 0 24px 6px rgba(216, 252, 59, 0.12);
+  }
+  50% {
+    box-shadow: 0 0 18px 5px rgba(216, 252, 59, 0.7),
+                0 0 48px 14px rgba(216, 252, 59, 0.22);
+  }
+}
+
+.glow-divider {
+  animation: glowPulse 2.5s ease-in-out infinite;
+}
+
+/* Scrunch brand dashed grid — 96×96px cells, ink at 12% on porcelain */
+.bg-grid {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96'%3E%3Cline x1='0' y1='0' x2='96' y2='0' stroke='%231D1107' stroke-opacity='0.12' stroke-width='1' stroke-dasharray='4 4'/%3E%3Cline x1='0' y1='0' x2='0' y2='96' stroke='%231D1107' stroke-opacity='0.12' stroke-width='1' stroke-dasharray='4 4'/%3E%3C/svg%3E");
+  background-size: 96px 96px;
+  background-repeat: repeat;
+}
+
+/* Grid cell pulse */
+@keyframes cellPulse {
+  0%, 100% { opacity: 0.08; }
+  50% { opacity: 0.85; }
+}
+
+/* Particle stream */
+@keyframes streamRight {
+  0% { transform: translateX(0); opacity: 0; }
+  5% { opacity: 1; }
+  95% { opacity: 1; }
+  100% { transform: translateX(var(--stream-distance, 800px)); opacity: 0; }
+}
+
+/* Code line fade-in */
+@keyframes codeLine {
+  from { opacity: 0; transform: translateX(-6px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.code-line-in {
+  animation: codeLine 0.25s ease-out forwards;
+}
+
+/* Token counter roll */
+@keyframes tokenRoll {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.token-roll {
+  animation: tokenRoll 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Feature card hover */
+.feature-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.feature-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(29, 17, 7, 0.1);
+}
+
+/* Browser mockup shadow */
+.browser-shadow {
+  box-shadow:
+    0 2px 4px rgba(0,0,0,0.04),
+    0 8px 16px rgba(0,0,0,0.06),
+    0 24px 48px rgba(0,0,0,0.08),
+    0 48px 80px rgba(0,0,0,0.06);
+}
+
+/* ── Card Stream Scanner Mechanic ── */
+
+/* Cards scroll in a flex row */
+.card-stream {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: visible;
+}
+
+.card-line {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  white-space: nowrap;
+  cursor: grab;
+  user-select: none;
+  will-change: transform;
+}
+
+.card-line:active,
+.card-line.dragging {
+  cursor: grabbing;
+}
+
+/* Each card wrapper holds two layers stacked */
+.card-wrapper {
+  position: relative;
+  width: 800px;
+  height: 500px;
+  flex-shrink: 0;
+  /* Reset white-space so card text content wraps normally */
+  white-space: normal;
+}
+
+.card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 800px;
+  height: 500px;
+  /* 66px Figma radius × (800/1179) scale = 45px */
+  border-radius: 45px;
+  overflow: hidden;
+}
+
+/* Normal (image) card — clips from left as scanner passes */
+.card-normal {
+  z-index: 2;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.06),
+    0 16px 40px rgba(0, 0, 0, 0.1),
+    0 32px 64px rgba(0, 0, 0, 0.08);
+  clip-path: inset(0 0 0 var(--clip-right, 0%) round 45px);
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 45px;
+  filter: brightness(1.02) contrast(1.02);
+}
+
+/* ASCII/code card — clips from right until scanner passes */
+.card-ascii {
+  z-index: 1;
+  clip-path: inset(0 calc(100% - var(--clip-left, 0%)) 0 0 round 45px);
+  /* Light card background — matches porcelain section */
+  background: #F7F3EB;
+  border-radius: 45px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.ascii-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Dark ink text — readable on light porcelain background */
+  color: rgba(29, 17, 7, 0.62);
+  font-family: var(--font-ibm-plex-mono), 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 17px;
+  overflow: hidden;
+  white-space: pre;
+  margin: 0;
+  padding: 10px;
+  text-align: left;
+  box-sizing: border-box;
+  /* Fade out toward right edge */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.9) 50%,
+    rgba(0, 0, 0, 0.5) 75%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.9) 50%,
+    rgba(0, 0, 0, 0.5) 75%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  /* Subtle glitch flicker */
+  animation: glitch 0.12s infinite linear alternate-reverse;
+}
+
+@keyframes glitch {
+  0%   { opacity: 1; }
+  15%  { opacity: 0.92; }
+  16%  { opacity: 1; }
+  49%  { opacity: 0.85; }
+  50%  { opacity: 1; }
+  99%  { opacity: 0.93; }
+  100% { opacity: 1; }
+}
+
+/* Scan flash effect when a card first enters the beam */
+.scan-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(216, 252, 59, 0.45), transparent);
+  animation: scanEffect 0.6s ease-out forwards;
+  pointer-events: none;
+  z-index: 5;
+  border-radius: 45px;
+}
+
+@keyframes scanEffect {
+  0%   { transform: translateX(-100%); opacity: 0; }
+  50%  { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
 }
