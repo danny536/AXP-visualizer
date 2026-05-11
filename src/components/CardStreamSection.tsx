@@ -754,7 +754,7 @@ export default function CardStreamSection() {
     if (!container || !cardLine || !scannerCanvas) return;
 
     function calcDimensions() {
-      stateRef.current.containerWidth = container.offsetWidth;
+      stateRef.current.containerWidth = container!.offsetWidth;
       stateRef.current.cardLineWidth  = (CARD_WIDTH + CARD_GAP) * CARDS_COUNT;
     }
     calcDimensions();
@@ -772,7 +772,7 @@ export default function CardStreamSection() {
       let maxScanProgress = 0;
       let activeScanKey = "";
 
-      cardLine.querySelectorAll<HTMLElement>(".card-wrapper").forEach((wrapper, idx) => {
+      cardLine!.querySelectorAll<HTMLElement>(".card-wrapper").forEach((wrapper, idx) => {
         const rect = wrapper.getBoundingClientRect();
         const normalCard = wrapper.querySelector<HTMLElement>(".card-normal");
         const asciiCard  = wrapper.querySelector<HTMLElement>(".card-ascii");
@@ -858,7 +858,7 @@ export default function CardStreamSection() {
       if (s.position < -s.cardLineWidth) s.position = s.containerWidth;
       else if (s.position > s.containerWidth) s.position = -s.cardLineWidth;
 
-      cardLine.style.transform = `translateX(${s.position}px)`;
+      cardLine!.style.transform = `translateX(${s.position}px)`;
       updateClipping();
       s.animId = requestAnimationFrame(animate);
     }
@@ -867,7 +867,7 @@ export default function CardStreamSection() {
     stateRef.current.animId   = requestAnimationFrame(animate);
 
     requestAnimationFrame(() => {
-      cardLine.style.transform = `translateX(${stateRef.current.position}px)`;
+      cardLine!.style.transform = `translateX(${stateRef.current.position}px)`;
       updateClipping();
     });
 
@@ -884,9 +884,9 @@ export default function CardStreamSection() {
       const s = stateRef.current;
       s.isDragging = true; s.isAnimating = false;
       s.lastMouseX = clientX; s.mouseVelocity = 0;
-      const tx = new DOMMatrix(window.getComputedStyle(cardLine).transform);
+      const tx = new DOMMatrix(window.getComputedStyle(cardLine!).transform);
       s.position = tx.m41;
-      cardLine.classList.add("dragging");
+      cardLine!.classList.add("dragging");
       document.body.style.userSelect = "none";
       document.body.style.cursor = "grabbing";
     }
@@ -900,7 +900,7 @@ export default function CardStreamSection() {
       const s = stateRef.current;
       if (!s.isDragging) return;
       s.isDragging = false;
-      cardLine.classList.remove("dragging");
+      cardLine!.classList.remove("dragging");
       if (Math.abs(s.mouseVelocity) > s.minVelocity) {
         s.velocity = Math.abs(s.mouseVelocity);
         s.direction = s.mouseVelocity > 0 ? 1 : -1;
