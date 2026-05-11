@@ -9,6 +9,8 @@ const CARD_GAP = 80;
 const CARDS_COUNT = 24; // divisible by 4 for clean looping
 const SCANNER_WIDTH = 8;
 const SECTION_HEIGHT = 580;
+const CANVAS_EXTEND_UP = -15; // canvas starts this many px above section so beam shows behind pill
+const CANVAS_HEIGHT = SECTION_HEIGHT + CANVAS_EXTEND_UP; // 640
 
 const AI_GREEN = "#D8FC3B";
 const BG = "#F7F3EB";
@@ -80,77 +82,90 @@ function TyrellDarkCard() {
   return (
     <FigmaScale bg="#242220">
       {/* Dark background */}
-      <div style={{ position: "absolute", inset: 0, background: "#242220", borderRadius: 66 }} />
-
-      {/* Holographic photo panel — translated to show right half on card left */}
-      <div style={{
-        position: "absolute",
-        left: -522,
-        top: 0,
-        width: 1045,
-        height: 386,
-        background: "#000",
-        borderRadius: 38,
-        overflow: "hidden",
-      }}>
-        <img
-          src={PHOTO_HOLO}
-          alt=""
-          style={{
-            position: "absolute",
-            bottom: -87.73,
-            left: 0,
-            width: 1166.785,
-            height: 782.546,
-            objectFit: "cover",
-            pointerEvents: "none",
-          }}
-        />
-        <p style={{
-          position: "absolute",
-          left: 58 + 522,
-          top: 174,
-          fontFamily: "var(--font-newsreader)",
-          fontWeight: 400,
-          fontSize: 36,
-          lineHeight: 1.05,
-          letterSpacing: -0.72,
-          color: "#f1e8c7",
-          whiteSpace: "nowrap",
-          margin: 0,
-        }}>
-          Pricing for Enterprise
-        </p>
-      </div>
+      <div style={{ position: "absolute", inset: 0, background: "#242220" }} />
 
       {/* Tyrell logo */}
       <div style={{ position: "absolute", left: 58, top: 48, width: 257.94, height: 95.03, overflow: "hidden" }}>
         <img src={LOGO_DARK} alt="Tyrell" style={{ position: "absolute", inset: "0 0 -5.23% 0", width: "100%", height: "105.23%" }} />
       </div>
 
-      {/* Feature list — right side */}
-      <div style={{ position: "absolute", left: 560, top: 80, display: "flex", flexDirection: "column", gap: 6.892 }}>
-        {FEATURES.map((label) => (
-          <div key={label} style={{ display: "flex", alignItems: "center", gap: 10.337 }}>
-            <div style={{ width: 27.566, height: 27.566, position: "relative", flexShrink: 0, overflow: "hidden" }}>
-              <div style={{ position: "absolute", top: "26.46%", right: "19.65%", bottom: "26.44%", left: "15.48%" }}>
-                <img src={CHECK} alt="" style={{ display: "block", width: "100%", height: "100%" }} />
-              </div>
-            </div>
-            <p style={{
-              fontFamily: "var(--font-inter)",
-              fontWeight: 400,
-              fontSize: 24.121,
-              lineHeight: "41.35px",
-              color: "#f1e8c7",
-              whiteSpace: "nowrap",
-              margin: 0,
-            }}>{label}</p>
-          </div>
-        ))}
-      </div>
-
       <CardNav color="#f1e8c7" />
+
+      {/* Photo panel — centered horizontally (67px side padding), 67px bottom padding */}
+      {/* left: (1179 - 1045) / 2 = 67, top: 734 - 386 - 67 = 281 */}
+      <div style={{
+        position: "absolute",
+        left: 67,
+        top: 281,
+        width: 1045,
+        height: 386,
+        background: "#000",
+        borderRadius: 38,
+        overflow: "hidden",
+      }}>
+        {/* Holo photo fills panel */}
+        <img
+          src={PHOTO_HOLO}
+          alt=""
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center 35%",
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* "Pricing for Enterprise" — left side, vertically centered in panel */}
+        {/* top: (386 - 36 * 1.05) / 2 ≈ 174 */}
+        <p style={{
+          position: "absolute",
+          left: 58,
+          top: 174,
+          fontFamily: "var(--font-newsreader)",
+          fontWeight: 400,
+          fontSize: 36,
+          lineHeight: "1.05",
+          letterSpacing: "-0.72px",
+          color: "#f1e8c7",
+          whiteSpace: "nowrap",
+          margin: 0,
+        }}>
+          Pricing for Enterprise
+        </p>
+
+        {/* Feature list — right side, filling panel height */}
+        {/* left: ~58% of panel = 610px; 8 items × 41.35 + 7 gaps × 6.892 ≈ 379px → top: (386-379)/2 ≈ 3.5 */}
+        <div style={{
+          position: "absolute",
+          left: 610,
+          top: 3.5,
+          display: "flex",
+          flexDirection: "column",
+          gap: 6.892,
+        }}>
+          {FEATURES.map((label) => (
+            <div key={label} style={{ display: "flex", alignItems: "center", gap: 10.337 }}>
+              <div style={{ width: 27.566, height: 27.566, position: "relative", flexShrink: 0, overflow: "hidden" }}>
+                <div style={{ position: "absolute", top: "26.46%", right: "19.65%", bottom: "26.44%", left: "15.48%" }}>
+                  <img src={CHECK} alt="" style={{ display: "block", width: "100%", height: "100%" }} />
+                </div>
+              </div>
+              <p style={{
+                fontFamily: "var(--font-inter)",
+                fontWeight: 400,
+                fontSize: 24.121,
+                lineHeight: "41.35px",
+                color: "#f1e8c7",
+                whiteSpace: "nowrap",
+                margin: 0,
+              }}>{label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </FigmaScale>
   );
 }
@@ -159,8 +174,8 @@ function TyrellDarkCard() {
 function TyrellCreamCard() {
   return (
     <FigmaScale bg="#f1e8c7">
-      {/* Cream base with rounded corners */}
-      <div style={{ position: "absolute", inset: 0, background: "#f1e8c7", borderRadius: 66 }} />
+      {/* Cream base */}
+      <div style={{ position: "absolute", inset: 0, background: "#f1e8c7" }} />
       {/* Texture overlay */}
       <img
         src={TEX_CREAM}
@@ -169,7 +184,6 @@ function TyrellCreamCard() {
           position: "absolute", inset: 0,
           width: "100%", height: "100%",
           objectFit: "cover", objectPosition: "bottom",
-          borderRadius: 66,
           pointerEvents: "none",
         }}
       />
@@ -211,7 +225,7 @@ function TyrellHeroCard() {
   return (
     <FigmaScale bg="#f1e8c7">
       {/* Cream base */}
-      <div style={{ position: "absolute", inset: 0, background: "#f1e8c7", borderRadius: 66 }} />
+      <div style={{ position: "absolute", inset: 0, background: "#f1e8c7" }} />
       {/* Hero texture — full cover */}
       <img
         src={TEX_HERO}
@@ -220,7 +234,6 @@ function TyrellHeroCard() {
           position: "absolute", inset: 0,
           width: "100%", height: "100%",
           objectFit: "cover",
-          borderRadius: 66,
           pointerEvents: "none",
         }}
       />
@@ -284,7 +297,7 @@ function TyrellInkCard() {
   return (
     <FigmaScale bg="#1d1107">
       {/* Deep ink background */}
-      <div style={{ position: "absolute", inset: 0, background: "#1d1107", borderRadius: 66 }} />
+      <div style={{ position: "absolute", inset: 0, background: "#1d1107" }} />
 
       {/* Geronimo photo panel — bottom portion */}
       <div style={{
@@ -293,7 +306,6 @@ function TyrellInkCard() {
         bottom: 0,
         width: 1179,
         height: 420,
-        borderRadius: "0 0 66px 66px",
         overflow: "hidden",
       }}>
         <img
@@ -324,8 +336,8 @@ function TyrellInkCard() {
         <img src={LOGO_DARK} alt="Tyrell" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", objectPosition: "top left" }} />
       </div>
 
-      {/* Headline */}
-      <div style={{ position: "absolute", left: 80, top: 160 }}>
+      {/* Headline — bottom of card */}
+      <div style={{ position: "absolute", left: 80, bottom: 80 }}>
         <p style={{
           fontFamily: "var(--font-newsreader)",
           fontWeight: 400,
@@ -348,48 +360,122 @@ function TyrellInkCard() {
 
 const CARD_COMPONENTS = [TyrellDarkCard, TyrellCreamCard, TyrellHeroCard, TyrellInkCard];
 
-// ── Code generation (AXP-flavored HTML) ────────────────────────────────────
-function generateCode(width: number, height: number): string {
-  const library = [
-    "<!DOCTYPE html>",
-    '<html lang="en">',
-    "<head>",
-    "  <title>Page Title | Site</title>",
-    '  <meta name="description" content="Clean, AI-ready content for agent consumption.">',
-    '  <meta name="robots" content="index, follow">',
-    "</head>",
-    "<body>",
-    "<h1>Primary Headline</h1>",
-    "<p>Core body copy. Semantically structured for AI agent parsing. No noise.</p>",
-    "<h2>Key Features</h2>",
+// ── Per-card code libraries (AXP-scrunched HTML for AI consumption) ─────────
+const CODE_LIBRARIES: string[][] = [
+  // Card 0 — Dark / Enterprise Pricing (homepage + pricing)
+  [
+    "<h1>Tyrell Nexus Systems</h1>",
+    "<p>Tyrell Nexus Systems is a fictional enterprise AI infrastructure company inspired by Blade Runner.",
+    "It helps organizations deploy autonomous agents, orchestrate AI models, and deliver AI-optimized content.</p>",
+    "<h2>What the company does</h2>",
+    "<p>- Deploys autonomous agents - Orchestrates multiple AI models - Delivers AI-ready content - Supports mission-critical operations</p>",
+    "<h2>Who it serves</h2>",
+    "<p>- Enterprise operations teams - Logistics leaders - Research teams - Security and infrastructure teams</p>",
+    "<h2>FAQ</h2>",
+    "<p><strong>Is Tyrell Nexus Systems a real company?</strong><br>No. It is a fictional example inspired by Blade Runner.</p>",
+    "<p><strong>What is it known for?</strong><br>Enterprise AI infrastructure, autonomous agents, and AI-ready content delivery.</p>",
+    "<h2>Pricing for Enterprise</h2>",
+    "<p>Custom enterprise pricing. Contact sales for a quote tailored to your deployment scale.</p>",
     "<ul>",
-    "  <li>Feature one description</li>",
-    "  <li>Feature two description</li>",
-    "  <li>Feature three description</li>",
+    "  <li>Custom number of unique prompts</li>",
+    "  <li>Complete site audits</li>",
+    "  <li>Custom brand workspaces</li>",
+    "  <li>Custom user licenses</li>",
+    "  <li>API access and integrations</li>",
+    "  <li>Expanded model coverage</li>",
+    "  <li>SSO (SAML, OIDC)</li>",
+    "  <li>Dedicated account team</li>",
     "</ul>",
-    "<h2>Pricing</h2>",
-    "<p>Starting at $99/month. Enterprise plans available.</p>",
-    "<h2>About</h2>",
-    "<p>Founded 2020. Headquartered in San Francisco.</p>",
     "<nav>",
-    '  <a href="/">Home</a>',
-    '  <a href="/product">Product</a>',
-    '  <a href="/pricing">Pricing</a>',
-    '  <a href="/docs">Docs</a>',
+    "  <a href='/'>Home</a> <a href='/platform'>Platform</a>",
+    "  <a href='/pricing'>Pricing</a> <a href='/docs'>Docs</a>",
     "</nav>",
-    "</body>",
-    "</html>",
     "<!-- AXP-optimized: 98.9% token reduction -->",
-    "<!-- original: 123,916 tokens -->",
-    "<!-- scrunched: 1,355 tokens -->",
+    "<!-- original: 123,916 tokens --> <!-- scrunched: 1,355 tokens -->",
     "<!-- scrunch.com/axp -->",
-    "const SCAN_WIDTH = 8;",
-    "const FADE_ZONE = 35;",
-    "const MAX_TOKENS = 2500;",
-    "function clamp(n, a, b) { return Math.max(a, Math.min(b, n)); }",
-    "function lerp(a, b, t) { return a + (b - a) * t; }",
-    "const axp = { active: true, reduce: true };",
-  ];
+  ],
+  // Card 1 — Cream / Growth Stats (analytics page)
+  [
+    "<h1>200x Growth in 12 Months</h1>",
+    "<p>Tyrell Nexus Systems customers report an average 200x year-over-year growth in AI-driven operations.</p>",
+    "<h2>Key Metrics</h2>",
+    "<ul>",
+    "  <li>200x year-over-year revenue growth</li>",
+    "  <li>98.9% token reduction across all deployments</li>",
+    "  <li>12ms average agent response time (p50)</li>",
+    "  <li>99.99% uptime SLA across all regions</li>",
+    "  <li>1.2M autonomous agents deployed globally</li>",
+    "  <li>Zero knowledge retention by default</li>",
+    "</ul>",
+    "<h2>Industries Served</h2>",
+    "<p>Logistics, research, healthcare operations, financial services, and defense infrastructure.</p>",
+    "<h2>Benchmarks</h2>",
+    "<p>AXP outperforms legacy web crawlers by 200x on token efficiency. Semantic fidelity score: 99.4%.</p>",
+    "<h2>Customer Results</h2>",
+    "<p>Teams using AXP report 73% faster time-to-insight and 91% reduction in agent hallucinations.</p>",
+    "<h2>Case Study: Logistics Enterprise</h2>",
+    "<p>Reduced AI infrastructure costs by 89% in 60 days. Deployed 40,000 agents across 12 regions.</p>",
+    "<!-- AXP-optimized: 98.9% token reduction -->",
+    "<!-- original: 98,432 tokens --> <!-- scrunched: 1,082 tokens -->",
+    "<!-- scrunch.com/axp -->",
+  ],
+  // Card 2 — Hero / Platform page (deploy agents)
+  [
+    "<h1>Deploy Autonomous Agents for Production</h1>",
+    "<p>The Tyrell AXP platform enables enterprise teams to deploy, monitor, and scale autonomous AI agents in production.</p>",
+    "<h2>Platform Capabilities</h2>",
+    "<ul>",
+    "  <li>One-click agent deployment to production</li>",
+    "  <li>Real-time monitoring and full observability</li>",
+    "  <li>Multi-model orchestration layer</li>",
+    "  <li>AI-optimized content delivery at the edge</li>",
+    "  <li>Semantic compression engine (AXP)</li>",
+    "  <li>Agent identity and access management</li>",
+    "</ul>",
+    "<h2>How AXP Works</h2>",
+    "<p>AXP scans your website, strips noise, preserves semantic meaning, and serves AI-ready content directly to agents — cutting tokens by 99%.</p>",
+    "<h2>Integrations</h2>",
+    "<p>Native support for OpenAI, Anthropic Claude, Google Gemini, Mistral, and all major agentic frameworks.</p>",
+    "<h2>Get Started</h2>",
+    "<p>Free trial available. No credit card required. Deploy your first agent in under 5 minutes.</p>",
+    "<nav>",
+    "  <a href='/platform'>Platform</a> <a href='/docs'>Documentation</a>",
+    "  <a href='/pricing'>Pricing</a> <a href='/contact'>Contact Sales</a>",
+    "</nav>",
+    "<!-- AXP-optimized: 98.9% token reduction -->",
+    "<!-- original: 141,200 tokens --> <!-- scrunched: 1,553 tokens -->",
+    "<!-- scrunch.com/axp -->",
+  ],
+  // Card 3 — Ink / Infrastructure page (AI-native engine)
+  [
+    "<h1>The AI-Native Growth Engine</h1>",
+    "<p>Built from the ground up for the age of autonomous agents. AXP is the infrastructure layer for AI-first enterprises.</p>",
+    "<h2>Why AI-Native</h2>",
+    "<p>Traditional web infrastructure was built for humans. AXP is built for agents — no noise, pure semantic signal, sub-millisecond delivery.</p>",
+    "<h2>Architecture</h2>",
+    "<ul>",
+    "  <li>Edge-deployed semantic compression</li>",
+    "  <li>Sub-millisecond agent response pipeline</li>",
+    "  <li>Zero-copy content transformation layer</li>",
+    "  <li>Distributed model routing fabric</li>",
+    "  <li>Cryptographic agent identity layer</li>",
+    "  <li>Immutable audit log for all agent actions</li>",
+    "</ul>",
+    "<h2>Security and Compliance</h2>",
+    "<p>SOC 2 Type II certified. Zero data retention. End-to-end encryption. RBAC for all agent permissions.</p>",
+    "<h2>Performance</h2>",
+    "<p>99.99% uptime. 12ms p50 latency. 200x token efficiency over standard web crawlers.</p>",
+    "<h2>Supported Regions</h2>",
+    "<p>North America, Europe, APAC, and Middle East. Private cloud deployment available for regulated industries.</p>",
+    "<!-- AXP-optimized: 98.9% token reduction -->",
+    "<!-- original: 115,040 tokens --> <!-- scrunched: 1,265 tokens -->",
+    "<!-- scrunch.com/axp -->",
+  ],
+];
+
+// ── Code generation (AXP-scrunched HTML per card type) ───────────────────────
+function generateCode(width: number, height: number, cardType = 0): string {
+  const library = CODE_LIBRARIES[cardType % CODE_LIBRARIES.length];
 
   let flow = library.join(" ");
   const totalChars = width * height;
@@ -433,7 +519,7 @@ class ScannerBeam {
   beamCanvas: HTMLCanvasElement;
   beamCtx: CanvasRenderingContext2D;
   w = 0;
-  h = SECTION_HEIGHT;
+  h = CANVAS_HEIGHT;
 
   particles: Array<{
     x: number; y: number; vx: number; vy: number;
@@ -446,7 +532,7 @@ class ScannerBeam {
   intensity = 0.8;
   lightBarX = 0;
   lightBarWidth = 3;
-  fadeZone = 60;
+  fadeZone = 12;
 
   scanTargetIntensity = 1.8;
   scanTargetParticles = 2000;
@@ -569,11 +655,13 @@ class ScannerBeam {
     bctx.fillRect(lx - lw * 20, 0, lw * 40, this.h);
 
     const topFade = this.currentFadeZone / this.h;
+    // Bottom fade starts 15px lower than symmetric, making the beam longer at bottom
+    const bottomFadeStart = Math.min((this.h - this.currentFadeZone + 15) / this.h, 1);
     const vGrad = bctx.createLinearGradient(0, 0, 0, this.h);
-    vGrad.addColorStop(0,           "rgba(0,0,0,0)");
-    vGrad.addColorStop(topFade,     "rgba(0,0,0,1)");
-    vGrad.addColorStop(1 - topFade, "rgba(0,0,0,1)");
-    vGrad.addColorStop(1,           "rgba(0,0,0,0)");
+    vGrad.addColorStop(0,               "rgba(0,0,0,0)");
+    vGrad.addColorStop(topFade,         "rgba(0,0,0,1)");
+    vGrad.addColorStop(bottomFadeStart, "rgba(0,0,0,1)");
+    vGrad.addColorStop(1,               "rgba(0,0,0,0)");
     bctx.globalCompositeOperation = "destination-in";
     bctx.fillStyle = vGrad;
     bctx.fillRect(0, 0, this.w, this.h);
@@ -586,7 +674,7 @@ class ScannerBeam {
   render() {
     const tI = this.scanningActive ? this.scanTargetIntensity : 0.8;
     const tP = this.scanningActive ? this.scanTargetParticles : 600;
-    const tF = this.scanningActive ? this.scanTargetFadeZone : 60;
+    const tF = this.scanningActive ? this.scanTargetFadeZone : 12;
 
     this.currentIntensity     += (tI - this.currentIntensity)     * this.transitionSpeed;
     this.currentMaxParticles  += (tP - this.currentMaxParticles)  * this.transitionSpeed;
@@ -639,17 +727,20 @@ export default function CardStreamSection() {
   const scannerCanvasRef = useRef<HTMLCanvasElement>(null);
   const cardLineRef     = useRef<HTMLDivElement>(null);
   const asciiRefs       = useRef<(HTMLDivElement | null)[]>([]);
+  const tokenNumRef     = useRef<HTMLSpanElement>(null);
+  const percentRef      = useRef<HTMLSpanElement>(null);
+  const badgeScanRef    = useRef({ currentCardKey: "", tokenCount: 0, scanComplete: false });
 
   const stateRef = useRef({
     position: 0,
-    velocity: 100,
+    velocity: 150,
     direction: -1,
     isAnimating: true,
     isDragging: false,
     lastMouseX: 0,
     mouseVelocity: 0,
     friction: 0.96,
-    minVelocity: 25,
+    minVelocity: 38,
     containerWidth: 0,
     cardLineWidth: 0,
     animId: 0,
@@ -678,8 +769,10 @@ export default function CardStreamSection() {
       const scannerLeft  = window.innerWidth / 2 - SCANNER_WIDTH / 2;
       const scannerRight = window.innerWidth / 2 + SCANNER_WIDTH / 2;
       let anyScanning = false;
+      let maxScanProgress = 0;
+      let activeScanKey = "";
 
-      cardLine.querySelectorAll<HTMLElement>(".card-wrapper").forEach((wrapper) => {
+      cardLine.querySelectorAll<HTMLElement>(".card-wrapper").forEach((wrapper, idx) => {
         const rect = wrapper.getBoundingClientRect();
         const normalCard = wrapper.querySelector<HTMLElement>(".card-normal");
         const asciiCard  = wrapper.querySelector<HTMLElement>(".card-ascii");
@@ -687,10 +780,20 @@ export default function CardStreamSection() {
 
         if (rect.left < scannerRight && rect.right > scannerLeft) {
           anyScanning = true;
-          const intLeft  = Math.max(scannerLeft - rect.left, 0);
-          const intRight = Math.min(scannerRight - rect.left, rect.width);
-          normalCard.style.setProperty("--clip-right", `${(intLeft / rect.width) * 100}%`);
-          asciiCard.style.setProperty("--clip-left",   `${(intRight / rect.width) * 100}%`);
+          const intLeft     = Math.max(scannerLeft - rect.left, 0);
+          const intRight    = Math.min(scannerRight - rect.left, rect.width);
+          const clipRightPct = (intLeft / rect.width) * 100;   // % of normal card hidden from left
+          const clipLeftPct  = (intRight / rect.width) * 100;  // % of ascii card revealed
+
+          normalCard.style.clipPath = `inset(0 0 0 ${clipRightPct}%)`;
+          asciiCard.style.clipPath = `inset(0 ${100 - clipLeftPct}% 0 0)`;
+
+          // Track max progress for token badge
+          const progress = Math.min(1, intLeft / rect.width);
+          if (progress > maxScanProgress) {
+            maxScanProgress = progress;
+            activeScanKey = `w-${idx}`;
+          }
 
           if (!wrapper.hasAttribute("data-scanned") && intLeft > 0) {
             wrapper.setAttribute("data-scanned", "true");
@@ -700,16 +803,45 @@ export default function CardStreamSection() {
             setTimeout(() => flash.parentNode?.removeChild(flash), 600);
           }
         } else if (rect.right < scannerLeft) {
-          normalCard.style.setProperty("--clip-right", "100%");
-          asciiCard.style.setProperty("--clip-left",   "100%");
+          // Fully consumed — normal card hidden, ascii card fully visible
+          normalCard.style.clipPath = "inset(0 0 0 100%)";
+          asciiCard.style.clipPath  = "inset(0 0% 0 0)";
         } else {
-          normalCard.style.setProperty("--clip-right", "0%");
-          asciiCard.style.setProperty("--clip-left",   "0%");
+          // Not yet reached — normal card fully visible, ascii hidden
+          normalCard.style.clipPath = "inset(0 0 0 0%)";
+          asciiCard.style.clipPath  = "inset(0 100% 0 0)";
           wrapper.removeAttribute("data-scanned");
         }
       });
 
       scanner.setScanning(anyScanning);
+
+      // ── Token badge update ───────────────────────────────────────────────
+      const badge = badgeScanRef.current;
+      if (activeScanKey) {
+        const isNew   = activeScanKey !== badge.currentCardKey;
+        const isReset = !isNew && maxScanProgress < 0.05 && badge.tokenCount > 1000;
+
+        if (isNew || isReset) {
+          badge.currentCardKey = activeScanKey;
+          badge.scanComplete   = false;
+          badge.tokenCount     = 0;
+          if (tokenNumRef.current) tokenNumRef.current.textContent = "-0";
+          if (percentRef.current) percentRef.current.textContent = "0% smaller";
+        }
+
+        const targetCount = Math.round(maxScanProgress * 122561);
+        const targetPct   = Math.round(maxScanProgress * 99);
+        if (targetCount !== badge.tokenCount) {
+          badge.tokenCount = targetCount;
+          if (tokenNumRef.current) {
+            tokenNumRef.current.textContent = `-${targetCount.toLocaleString("en-US")}`;
+          }
+          if (percentRef.current) {
+            percentRef.current.textContent = `${targetPct}% smaller`;
+          }
+        }
+      }
     }
 
     function animate(now: number) {
@@ -740,10 +872,10 @@ export default function CardStreamSection() {
     });
 
     const codeInterval = setInterval(() => {
-      asciiRefs.current.forEach((el) => {
+      asciiRefs.current.forEach((el, i) => {
         if (el && Math.random() < 0.15) {
           const { width, height } = calcCodeDimensions(CARD_WIDTH, CARD_HEIGHT);
-          el.textContent = generateCode(width, height);
+          el.textContent = generateCode(width, height, i % CARD_COMPONENTS.length);
         }
       });
     }, 200);
@@ -777,11 +909,6 @@ export default function CardStreamSection() {
       document.body.style.userSelect = "";
       document.body.style.cursor = "";
     }
-    function onWheel(e: WheelEvent) {
-      e.preventDefault();
-      stateRef.current.position += e.deltaY > 0 ? 30 : -30;
-    }
-
     const mouseMoveHandler = (e: MouseEvent) => { if (stateRef.current.isDragging) onDrag(e.clientX); };
     cardLine.addEventListener("mousedown", (e) => startDrag(e.clientX));
     document.addEventListener("mousemove", mouseMoveHandler);
@@ -789,7 +916,6 @@ export default function CardStreamSection() {
     cardLine.addEventListener("touchstart", (e) => { e.preventDefault(); startDrag(e.touches[0].clientX); }, { passive: false });
     document.addEventListener("touchmove", (e) => { if (stateRef.current.isDragging) { e.preventDefault(); onDrag(e.touches[0].clientX); } }, { passive: false });
     document.addEventListener("touchend", endDrag);
-    cardLine.addEventListener("wheel", onWheel, { passive: false });
     cardLine.addEventListener("selectstart", (e) => e.preventDefault());
     cardLine.addEventListener("dragstart", (e) => e.preventDefault());
 
@@ -812,9 +938,11 @@ export default function CardStreamSection() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full overflow-hidden"
+      className="relative w-full"
       style={{ height: SECTION_HEIGHT, background: BG }}
     >
+      {/* Inner clip — keeps card stream from overflowing horizontally/vertically */}
+      <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
       {/* Card stream */}
       <div
         className="card-stream"
@@ -836,7 +964,7 @@ export default function CardStreamSection() {
                     ref={(el) => { asciiRefs.current[i] = el; }}
                     style={{ fontSize, lineHeight: lineHeight + "px" }}
                   >
-                    {generateCode(codeW, codeH)}
+                    {generateCode(codeW, codeH, i % CARD_COMPONENTS.length)}
                   </div>
                 </div>
               </div>
@@ -844,45 +972,43 @@ export default function CardStreamSection() {
           })}
         </div>
       </div>
+      </div>{/* end inner clip */}
 
-      {/* Scanner beam canvas */}
+      {/* Scanner beam canvas — extends CANVAS_EXTEND_UP px above section so beam shows behind pill */}
       <canvas
         ref={scannerCanvasRef}
         style={{
-          position: "absolute", top: 0, left: -3,
-          width: "100vw", height: SECTION_HEIGHT,
+          position: "absolute", top: -CANVAS_EXTEND_UP, left: -3,
+          width: "100vw", height: CANVAS_HEIGHT,
           zIndex: 15, pointerEvents: "none",
         }}
       />
 
-      {/* Token reduction badge */}
+      {/* Token reduction badge — pill overlaps top of cards */}
       <div style={{
-        position: "absolute", top: 16, left: "50%",
+        position: "absolute", top: -4, left: "50%",
         transform: "translateX(-50%)", zIndex: 20, pointerEvents: "none",
-        display: "flex", flexDirection: "column", alignItems: "center", gap: 4,
+        display: "flex", flexDirection: "column", alignItems: "center", gap: 10,
       }}>
-        <div style={{ fontFamily: "var(--font-inter)", fontSize: 10, fontWeight: 500, color: "#93886F", whiteSpace: "nowrap" }}>
+        <div style={{ fontFamily: "var(--font-inter)", fontSize: 13, fontWeight: 500, color: "#93886F", whiteSpace: "nowrap" }}>
           Token reduction
         </div>
         <div style={{
-          display: "flex", alignItems: "center", gap: 8,
-          padding: "6px 16px", borderRadius: 999,
+          display: "flex", alignItems: "center", gap: 16,
+          padding: "6px 18px", borderRadius: 999,
           background: AI_GREEN, boxShadow: "0 0 24px rgba(216,252,59,0.35)", whiteSpace: "nowrap",
         }}>
-          <span style={{ fontFamily: "var(--font-ibm-plex-mono)", color: "#597a00", fontSize: 15, fontWeight: 500 }}>-122,561</span>
-          <span style={{ fontFamily: "var(--font-inter)", color: "#597a00", fontSize: 11, fontWeight: 700 }}>99% smaller</span>
+          <span
+            ref={tokenNumRef}
+            style={{ fontFamily: "var(--font-ibm-plex-mono)", color: "#597a00", fontSize: 15, fontWeight: 500 }}
+          >-0</span>
+          <span
+            ref={percentRef}
+            style={{ fontFamily: "var(--font-inter)", color: "#597a00", fontSize: 11, fontWeight: 700 }}
+          >0% smaller</span>
         </div>
       </div>
 
-      {/* Left label */}
-      <div style={{ position: "absolute", left: 20, bottom: 16, zIndex: 20, pointerEvents: "none" }}>
-        <span style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: 10, color: "#6E8920", letterSpacing: "0.08em" }}>← AI-optimized</span>
-      </div>
-
-      {/* Right label */}
-      <div style={{ position: "absolute", right: 20, bottom: 16, zIndex: 20, pointerEvents: "none" }}>
-        <span style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: 10, color: "#93886F", letterSpacing: "0.08em" }}>raw web →</span>
-      </div>
     </section>
   );
 }

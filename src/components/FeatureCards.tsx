@@ -1,90 +1,53 @@
 const features = [
   {
-    icon: "monitor",
+    icon: "bar_chart_4_bars",
     title: "Agent Traffic",
     description: "Track bot traffic by AI model, page views, and bot type.",
-    color: "#2A4AEA",
   },
   {
-    icon: "search",
-    title: "Site Audit",
+    icon: "graph_1",
+    title: "Site Maps",
     description: "Know how AI agents view your site and what to fix.",
-    color: "#2A4AEA",
   },
   {
-    icon: "article",
-    title: "Content Optimizer",
-    description: "Get actionable fixes to improve content discovery and accuracy.",
-    color: "#6E8920",
-  },
-  {
-    icon: "rocket",
+    icon: "rocket_launch",
     title: "AI Delivery",
     description: "Ship token-light pages for AI consumption—no code required.",
-    color: "#D8FC3B",
   },
 ];
 
-function Icon({ name, color }: { name: string; color: string }) {
-  const style = { color };
-  if (name === "monitor") {
-    return (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style={style}>
-        <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M8 21h8M12 17v4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        <circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="1.5" />
-      </svg>
-    );
-  }
-  if (name === "search") {
-    return (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style={style}>
-        <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M16.5 16.5L21 21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        <path d="M8 11h6M11 8v6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
-    );
-  }
-  if (name === "article") {
-    return (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style={style}>
-        <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M7 8h10M7 12h10M7 16h6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
-    );
-  }
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style={style}>
-      <path d="M12 2L8 8H4l6 6-2 8 4-4 4 4-2-8 6-6h-4L12 2z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
 export default function FeatureCards() {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+    <div
+      className="grid grid-cols-1 sm:grid-cols-3 gap-4"
+      style={{ maxWidth: 1100, margin: "0 auto" }}
+    >
       {features.map((f) => (
         <div
           key={f.title}
-          className="feature-card flex flex-col gap-3 p-4 rounded-2xl bg-white/60 border border-white/80"
-          style={{ backdropFilter: "blur(8px)" }}
+          className="feature-card flex flex-col gap-4 p-6 rounded-2xl bg-white"
+          style={{
+            boxShadow: "0 1px 3px rgba(29,17,7,0.06), 0 4px 16px rgba(29,17,7,0.06)",
+          }}
         >
-          <div
-            className="w-8 h-8 rounded-lg flex items-center justify-center"
-            style={{ background: f.color === "#D8FC3B" ? "#D8FC3B" : `${f.color}15` }}
+          <span
+            className="material-symbols-outlined"
+            style={{
+              fontSize: 22,
+              color: "#1D1107",
+              fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24",
+            }}
           >
-            <Icon name={f.icon} color={f.color === "#D8FC3B" ? "#597a00" : f.color} />
-          </div>
+            {f.icon}
+          </span>
           <div>
             <div
-              className="text-sm font-semibold text-ink mb-1"
-              style={{ fontFamily: "var(--font-inter)" }}
+              style={{ fontFamily: "var(--font-inter)", color: "#1D1107", fontSize: 14, fontWeight: 600, letterSpacing: "-0.28px", marginBottom: 4 }}
             >
               {f.title}
             </div>
             <div
-              className="text-xs text-earth leading-relaxed"
-              style={{ fontFamily: "var(--font-inter)" }}
+              style={{ fontFamily: "var(--font-inter)", color: "#1D1107", fontSize: 14, fontWeight: 400, lineHeight: 1.5, letterSpacing: "-0.28px" }}
             >
               {f.description}
             </div>

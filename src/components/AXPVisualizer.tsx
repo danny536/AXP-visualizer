@@ -8,117 +8,52 @@ export default function AXPVisualizer() {
   return (
     <div className="bg-grid min-h-screen flex flex-col" style={{ backgroundColor: "#F7F3EB" }}>
 
-      {/* ── Header ── */}
-      <header
-        className="flex items-center justify-between px-6 py-4"
-        style={{ borderBottom: "1px solid rgba(29,17,7,0.07)" }}
+{/* ── Hero text ── */}
+      <div
+        className="flex flex-col sm:flex-row items-start"
+        style={{ maxWidth: 1280, margin: "0 auto", width: "100%", padding: "64px 120px 48px", gap: 160 }}
       >
-        <div className="flex items-center gap-3">
-          <span
-            className="text-lg font-semibold tracking-tight"
-            style={{ fontFamily: "var(--font-inter)", color: "#1D1107" }}
-          >
-            scrunch
-          </span>
-          <span
-            className="text-xs px-2 py-0.5 rounded-full font-medium"
-            style={{
-              background: "#D8FC3B",
-              color: "#597a00",
-              fontFamily: "var(--font-ibm-plex-mono)",
-            }}
+        {/* Left — headline, fixed width so right column can grow independently */}
+        <div style={{ flex: "0 0 535px", minWidth: 0 }}>
+          <p
+            style={{ fontFamily: "var(--font-inter)", color: "#93886F", fontSize: 11, fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 20 }}
           >
             AXP
-          </span>
+          </p>
+          <h1
+            style={{ fontFamily: "var(--font-newsreader)", color: "#1D1107", fontSize: 48, fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.96px", margin: 0 }}
+          >
+            Your site isn&apos;t built for AI.<br />
+            <em style={{ fontStyle: "italic" }}>Now it can be.</em>
+          </h1>
         </div>
 
-        <nav className="hidden sm:flex items-center gap-6">
-          {["Platform", "Monitoring", "Insights", "Pricing"].map((item) => (
-            <span
-              key={item}
-              className="text-sm cursor-pointer transition-colors"
-              style={{ fontFamily: "var(--font-inter)", color: "#93886F" }}
-            >
-              {item}
-            </span>
-          ))}
-        </nav>
-
-        <a
-          href="https://scrunch.com"
-          className="text-sm font-medium px-4 py-2 rounded-full"
-          style={{
-            background: "#2A4AEA",
-            color: "white",
-            fontFamily: "var(--font-inter)",
-          }}
-        >
-          Start free trial
-        </a>
-      </header>
-
-      {/* ── Hero text ── */}
-      <div className="px-6 pt-10 pb-6 text-center">
-        <div
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium mb-4"
-          style={{
-            background: "rgba(42,74,234,0.08)",
-            color: "#2A4AEA",
-            fontFamily: "var(--font-inter)",
-          }}
-        >
-          Agent Experience Platform
+        {/* Right — description + CTA */}
+        <div style={{ flex: "1 1 0", minWidth: 0, display: "flex", flexDirection: "column", gap: 28, paddingTop: 33 }}>
+          <p
+            style={{ fontFamily: "var(--font-inter)", color: "#1D1107", fontSize: 18, lineHeight: 1.5, letterSpacing: "-0.36px", fontWeight: 400, margin: 0 }}
+          >
+            Agent Experience Platform (AXP) detects AI agents at the edge and serves them AI optimized content—all without disrupting the human experience.
+          </p>
+          <a
+            href="https://scrunch.com"
+            style={{ display: "inline-flex", alignItems: "center", alignSelf: "flex-start", padding: "12px 24px", borderRadius: 30, background: "#2B4BEB", color: "#FBF9F6", fontFamily: "var(--font-inter)", fontSize: 16, fontWeight: 500, letterSpacing: "-0.16px", textDecoration: "none" }}
+          >
+            Explore AXP
+          </a>
         </div>
-        <h1
-          className="text-4xl sm:text-5xl font-normal leading-tight mb-3"
-          style={{ fontFamily: "var(--font-newsreader)", color: "#1D1107" }}
-        >
-          Your website...{" "}
-          <em style={{ fontFamily: "var(--font-newsreader)" }}>scrunched</em>
-          {" "}for AI traffic
-        </h1>
-        <p
-          className="text-base max-w-lg mx-auto"
-          style={{ fontFamily: "var(--font-inter)", color: "#93886F" }}
-        >
-          Watch the AXP scanner transform any website — stripping noise,
-          preserving meaning, cutting tokens by 99%.
-          <br />
-          <span className="text-xs opacity-70">Drag the stream. Scroll to explore.</span>
-        </p>
       </div>
 
       {/* ── Card Stream + Scanner (dark hero section) ── */}
       <CardStreamSection />
 
       {/* ── Feature cards ── */}
-      <div className="px-6 pb-10">
-        <div
-          className="text-xs text-center mb-4 font-medium"
-          style={{ fontFamily: "var(--font-inter)", color: "#93886F" }}
-        >
-          Part of the Scrunch Agent Experience Platform
-        </div>
+      <div className="px-10 pb-10" style={{ paddingTop: 100 }}>
         <FeatureCards />
       </div>
 
-      {/* ── Footer ── */}
-      <footer
-        className="mt-auto px-6 py-4 flex items-center justify-between"
-        style={{ borderTop: "1px solid rgba(29,17,7,0.07)" }}
-      >
-        <span
-          style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: "#93886F" }}
-        >
-          © 2025 Scrunch. Built with AXP.
-        </span>
-        <a
-          href="https://scrunch.com"
-          style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: "#2A4AEA" }}
-        >
-          scrunch.com →
-        </a>
-      </footer>
+      {/* ── Footer spacer ── */}
+      <footer className="mt-auto px-6 py-4" style={{ borderTop: "1px solid rgba(29,17,7,0.07)" }} />
     </div>
   );
 }
