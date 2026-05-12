@@ -383,8 +383,8 @@ function TyrellInkCard() {
       }}>
         {/* Header */}
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 26 }}>
-          <span style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: 28, fontWeight: 400, color: "#f1e8c7", letterSpacing: -0.4 }}>Product</span>
-          <span style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: 28, fontWeight: 400, color: "#f1e8c7" }}>01</span>
+          <span style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: 22, fontWeight: 400, color: "#f1e8c7", letterSpacing: -0.2 }}>Product</span>
+          <span style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: 22, fontWeight: 400, color: "#f1e8c7" }}>01</span>
         </div>
         {/* Divider */}
         <div style={{ height: 1, background: "#f1e8c7", marginBottom: 26 }} />
