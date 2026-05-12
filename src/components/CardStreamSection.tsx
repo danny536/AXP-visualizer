@@ -362,22 +362,50 @@ const CARD_COMPONENTS = [TyrellDarkCard, TyrellCreamCard, TyrellHeroCard, Tyrell
 
 // ── Per-card code libraries (AXP-scrunched HTML for AI consumption) ─────────
 const CODE_LIBRARIES: string[][] = [
-  // Card 0 — Dark / Enterprise Pricing (homepage + pricing)
+  // Card 0 — Dark / Enterprise Pricing
   [
     "<h1>Tyrell Nexus Systems</h1>",
-    "<p>Tyrell Nexus Systems is a fictional enterprise AI infrastructure company inspired by Blade Runner.",
-    "It helps organizations deploy autonomous agents, orchestrate AI models, and deliver AI-optimized content.</p>",
+    "<p>Tyrell Nexus Systems is a fictional enterprise AI",
+    "infrastructure company inspired by Blade Runner. It",
+    "helps organizations deploy autonomous agents,",
+    "orchestrate AI models, and deliver AI-optimized",
+    "content at scale.</p>",
+    "",
     "<h2>What the company does</h2>",
-    "<p>- Deploys autonomous agents - Orchestrates multiple AI models - Delivers AI-ready content - Supports mission-critical operations</p>",
+    "<p>",
+    "- Deploys autonomous agents at scale",
+    "- Orchestrates multiple AI models",
+    "- Delivers AI-ready content to agents",
+    "- Supports mission-critical operations",
+    "- Manages agent identity and permissions",
+    "</p>",
+    "",
     "<h2>Who it serves</h2>",
-    "<p>- Enterprise operations teams - Logistics leaders - Research teams - Security and infrastructure teams</p>",
+    "<p>",
+    "- Enterprise operations teams",
+    "- Logistics and supply chain leaders",
+    "- Research and data science teams",
+    "- Security and infrastructure teams",
+    "- Financial services organizations",
+    "</p>",
+    "",
     "<h2>FAQ</h2>",
-    "<p><strong>Is Tyrell Nexus Systems a real company?</strong><br>No. It is a fictional example inspired by Blade Runner.</p>",
-    "<p><strong>What is it known for?</strong><br>Enterprise AI infrastructure, autonomous agents, and AI-ready content delivery.</p>",
+    "<p><strong>Is Tyrell a real company?</strong>",
+    "No. Fictional enterprise inspired by",
+    "Blade Runner, used to demo AXP.</p>",
+    "",
+    "<p><strong>What does AXP stand for?</strong>",
+    "Agent Experience Platform. It scrunches",
+    "your site for AI agent consumption.</p>",
+    "",
+    "<p><strong>How long does setup take?</strong>",
+    "Under 5 minutes. No code required.</p>",
+    "",
     "<h2>Pricing for Enterprise</h2>",
-    "<p>Custom enterprise pricing. Contact sales for a quote tailored to your deployment scale.</p>",
+    "<p>Custom pricing. Contact sales for a",
+    "quote tailored to your scale.</p>",
     "<ul>",
-    "  <li>Custom number of unique prompts</li>",
+    "  <li>Custom unique prompts</li>",
     "  <li>Complete site audits</li>",
     "  <li>Custom brand workspaces</li>",
     "  <li>Custom user licenses</li>",
@@ -385,125 +413,226 @@ const CODE_LIBRARIES: string[][] = [
     "  <li>Expanded model coverage</li>",
     "  <li>SSO (SAML, OIDC)</li>",
     "  <li>Dedicated account team</li>",
+    "  <li>99.99% uptime SLA</li>",
+    "  <li>Priority support</li>",
     "</ul>",
+    "",
+    "<h2>Navigation</h2>",
     "<nav>",
-    "  <a href='/'>Home</a> <a href='/platform'>Platform</a>",
-    "  <a href='/pricing'>Pricing</a> <a href='/docs'>Docs</a>",
+    "  <a href='/'>Home</a>",
+    "  <a href='/platform'>Platform</a>",
+    "  <a href='/pricing'>Pricing</a>",
+    "  <a href='/docs'>Documentation</a>",
+    "  <a href='/contact'>Contact Sales</a>",
     "</nav>",
+    "",
     "<!-- AXP-optimized: 98.9% token reduction -->",
-    "<!-- original: 123,916 tokens --> <!-- scrunched: 1,355 tokens -->",
-    "<!-- scrunch.com/axp -->",
+    "<!-- original: 123,916 tokens -->",
+    "<!-- scrunched: 1,355 tokens -->",
+    "<!-- tyrellnexus.com/axp -->",
   ],
-  // Card 1 — Cream / Growth Stats (analytics page)
+  // Card 1 — Cream / Growth Stats
   [
     "<h1>200x Growth in 12 Months</h1>",
-    "<p>Tyrell Nexus Systems customers report an average 200x year-over-year growth in AI-driven operations.</p>",
+    "<p>Tyrell Nexus Systems customers report an",
+    "average 200x year-over-year growth in",
+    "AI-driven operations.</p>",
+    "",
     "<h2>Key Metrics</h2>",
     "<ul>",
     "  <li>200x year-over-year revenue growth</li>",
-    "  <li>98.9% token reduction across all deployments</li>",
-    "  <li>12ms average agent response time (p50)</li>",
-    "  <li>99.99% uptime SLA across all regions</li>",
-    "  <li>1.2M autonomous agents deployed globally</li>",
-    "  <li>Zero knowledge retention by default</li>",
+    "  <li>98.9% token reduction</li>",
+    "  <li>12ms agent response time (p50)</li>",
+    "  <li>99.99% uptime SLA across regions</li>",
+    "  <li>1.2M agents deployed globally</li>",
+    "  <li>Zero knowledge retention default</li>",
+    "  <li>99.4% semantic fidelity score</li>",
+    "  <li>Sub-3ms cold start (p95)</li>",
     "</ul>",
+    "",
     "<h2>Industries Served</h2>",
-    "<p>Logistics, research, healthcare operations, financial services, and defense infrastructure.</p>",
-    "<h2>Benchmarks</h2>",
-    "<p>AXP outperforms legacy web crawlers by 200x on token efficiency. Semantic fidelity score: 99.4%.</p>",
+    "<p>",
+    "- Logistics and supply chain",
+    "- Healthcare operations",
+    "- Financial services",
+    "- Defense infrastructure",
+    "- Enterprise research",
+    "- Government and public sector",
+    "</p>",
+    "",
+    "<h2>Benchmarks vs. Competitors</h2>",
+    "<p>AXP outperforms legacy crawlers by",
+    "200x on token efficiency. Hallucination",
+    "rate reduced by 91% vs. baseline.</p>",
+    "",
     "<h2>Customer Results</h2>",
-    "<p>Teams using AXP report 73% faster time-to-insight and 91% reduction in agent hallucinations.</p>",
+    "<p>73% faster time-to-insight.",
+    "91% reduction in agent hallucinations.",
+    "89% lower AI infrastructure costs.</p>",
+    "",
     "<h2>Case Study: Logistics Enterprise</h2>",
-    "<p>Reduced AI infrastructure costs by 89% in 60 days. Deployed 40,000 agents across 12 regions.</p>",
-    "<!-- AXP-optimized: 98.9% token reduction -->",
-    "<!-- original: 98,432 tokens --> <!-- scrunched: 1,082 tokens -->",
-    "<!-- scrunch.com/axp -->",
+    "<p>Reduced costs by 89% in 60 days.",
+    "Deployed 40,000 agents across 12 regions.",
+    "Zero downtime during migration.</p>",
+    "",
+    "<h2>Case Study: Financial Services</h2>",
+    "<p>Processed 2.4M agent queries per day.",
+    "Achieved SOC 2 compliance in 30 days.",
+    "Reduced hallucination rate to 0.3%.</p>",
+    "",
+    "<h2>Methodology</h2>",
+    "<p>Results based on 90-day deployments.",
+    "Benchmarked against GPT-4, Claude 3,",
+    "and Gemini Pro with default settings.</p>",
+    "",
+    "<!-- AXP-optimized: 93.6% token reduction -->",
+    "<!-- original: 98,432 tokens -->",
+    "<!-- scrunched: 6,300 tokens -->",
+    "<!-- tyrellnexus.com/axp -->",
   ],
-  // Card 2 — Hero / Platform page (deploy agents)
+  // Card 2 — Hero / Platform page
   [
-    "<h1>Deploy Autonomous Agents for Production</h1>",
-    "<p>The Tyrell AXP platform enables enterprise teams to deploy, monitor, and scale autonomous AI agents in production.</p>",
+    "<h1>Deploy Autonomous Agents</h1>",
+    "<p>The Tyrell AXP platform enables enterprise",
+    "teams to deploy, monitor, and scale autonomous",
+    "AI agents in production environments.</p>",
+    "",
     "<h2>Platform Capabilities</h2>",
     "<ul>",
-    "  <li>One-click agent deployment to production</li>",
-    "  <li>Real-time monitoring and full observability</li>",
+    "  <li>One-click agent deployment</li>",
+    "  <li>Real-time monitoring and observability</li>",
     "  <li>Multi-model orchestration layer</li>",
-    "  <li>AI-optimized content delivery at the edge</li>",
+    "  <li>AI-optimized content at the edge</li>",
     "  <li>Semantic compression engine (AXP)</li>",
     "  <li>Agent identity and access management</li>",
+    "  <li>Automated rollback and versioning</li>",
+    "  <li>Webhook and event streaming</li>",
     "</ul>",
+    "",
     "<h2>How AXP Works</h2>",
-    "<p>AXP scans your website, strips noise, preserves semantic meaning, and serves AI-ready content directly to agents — cutting tokens by 99%.</p>",
+    "<p>AXP intercepts agent requests at the edge,",
+    "strips visual noise, preserves semantic signal,",
+    "and returns token-optimized content — cutting",
+    "token usage by up to 99%.</p>",
+    "",
+    "<h2>Supported Models</h2>",
+    "<p>",
+    "- OpenAI GPT-4 and GPT-4o",
+    "- Anthropic Claude 3 and Claude 4",
+    "- Google Gemini Pro and Ultra",
+    "- Mistral Large and Mixtral",
+    "- Meta Llama 3 and Llama 3.1",
+    "- All OpenAI-compatible endpoints",
+    "</p>",
+    "",
     "<h2>Integrations</h2>",
-    "<p>Native support for OpenAI, Anthropic Claude, Google Gemini, Mistral, and all major agentic frameworks.</p>",
+    "<p>Native support for LangChain,",
+    "AutoGPT, CrewAI, and all major",
+    "agentic orchestration frameworks.</p>",
+    "",
+    "<h2>SLA and Reliability</h2>",
+    "<p>99.99% uptime guarantee. Multi-region",
+    "failover. Sub-15ms p99 latency.</p>",
+    "",
     "<h2>Get Started</h2>",
-    "<p>Free trial available. No credit card required. Deploy your first agent in under 5 minutes.</p>",
+    "<p>Free trial. No credit card required.",
+    "Deploy your first agent in 5 minutes.</p>",
+    "",
     "<nav>",
-    "  <a href='/platform'>Platform</a> <a href='/docs'>Documentation</a>",
-    "  <a href='/pricing'>Pricing</a> <a href='/contact'>Contact Sales</a>",
+    "  <a href='/platform'>Platform</a>",
+    "  <a href='/docs'>Documentation</a>",
+    "  <a href='/pricing'>Pricing</a>",
+    "  <a href='/contact'>Contact Sales</a>",
     "</nav>",
-    "<!-- AXP-optimized: 98.9% token reduction -->",
-    "<!-- original: 141,200 tokens --> <!-- scrunched: 1,553 tokens -->",
-    "<!-- scrunch.com/axp -->",
+    "",
+    "<!-- AXP-optimized: 97.2% token reduction -->",
+    "<!-- original: 141,200 tokens -->",
+    "<!-- scrunched: 3,940 tokens -->",
+    "<!-- tyrellnexus.com/axp -->",
   ],
-  // Card 3 — Ink / Infrastructure page (AI-native engine)
+  // Card 3 — Ink / Infrastructure page
   [
     "<h1>The AI-Native Growth Engine</h1>",
-    "<p>Built from the ground up for the age of autonomous agents. AXP is the infrastructure layer for AI-first enterprises.</p>",
-    "<h2>Why AI-Native</h2>",
-    "<p>Traditional web infrastructure was built for humans. AXP is built for agents — no noise, pure semantic signal, sub-millisecond delivery.</p>",
-    "<h2>Architecture</h2>",
+    "<p>Built from the ground up for the age of",
+    "autonomous agents. AXP is the infrastructure",
+    "layer powering AI-first enterprises.</p>",
+    "",
+    "<h2>Why AI-Native Architecture</h2>",
+    "<p>Traditional web infrastructure was built for",
+    "humans — full of visual chrome, navigation",
+    "elements, and rendering overhead. AXP strips",
+    "all of that and delivers pure semantic signal",
+    "at sub-millisecond latency.</p>",
+    "",
+    "<h2>Core Architecture</h2>",
     "<ul>",
     "  <li>Edge-deployed semantic compression</li>",
-    "  <li>Sub-millisecond agent response pipeline</li>",
-    "  <li>Zero-copy content transformation layer</li>",
+    "  <li>Sub-millisecond agent pipeline</li>",
+    "  <li>Zero-copy content transformation</li>",
     "  <li>Distributed model routing fabric</li>",
     "  <li>Cryptographic agent identity layer</li>",
-    "  <li>Immutable audit log for all agent actions</li>",
+    "  <li>Immutable audit log</li>",
+    "  <li>Real-time token metering</li>",
+    "  <li>Adaptive content versioning</li>",
     "</ul>",
+    "",
     "<h2>Security and Compliance</h2>",
-    "<p>SOC 2 Type II certified. Zero data retention. End-to-end encryption. RBAC for all agent permissions.</p>",
-    "<h2>Performance</h2>",
-    "<p>99.99% uptime. 12ms p50 latency. 200x token efficiency over standard web crawlers.</p>",
+    "<p>SOC 2 Type II certified. Zero data",
+    "retention by default. End-to-end encryption.",
+    "RBAC for all agent permissions. GDPR and",
+    "HIPAA compliant deployment modes available.</p>",
+    "",
+    "<h2>Performance Benchmarks</h2>",
+    "<p>99.99% uptime. 12ms p50 latency.",
+    "200x token efficiency over crawlers.",
+    "3ms cold start (p95). 99.4% semantic",
+    "fidelity vs. original content.</p>",
+    "",
     "<h2>Supported Regions</h2>",
-    "<p>North America, Europe, APAC, and Middle East. Private cloud deployment available for regulated industries.</p>",
-    "<!-- AXP-optimized: 98.9% token reduction -->",
-    "<!-- original: 115,040 tokens --> <!-- scrunched: 1,265 tokens -->",
-    "<!-- scrunch.com/axp -->",
+    "<p>",
+    "- North America (us-east-1, us-west-2)",
+    "- Europe (eu-west-1, eu-central-1)",
+    "- Asia Pacific (ap-southeast-1)",
+    "- Middle East (me-south-1)",
+    "- Private cloud on request",
+    "</p>",
+    "",
+    "<h2>Deployment Options</h2>",
+    "<p>Managed cloud, private cloud, or",
+    "on-premise. Kubernetes-native. Terraform",
+    "and Pulumi modules available.</p>",
+    "",
+    "<!-- AXP-optimized: 95.8% token reduction -->",
+    "<!-- original: 115,040 tokens -->",
+    "<!-- scrunched: 4,840 tokens -->",
+    "<!-- tyrellnexus.com/axp -->",
   ],
 ];
 
+// ── Per-card stats (used by badge + metadata comments) ────────────────────────
+const CARD_STATS = [
+  { pct: 98.9, original: 123916, scrunched: 1355  },
+  { pct: 93.6, original:  98432, scrunched: 6300  },
+  { pct: 97.2, original: 141200, scrunched: 3940  },
+  { pct: 95.8, original: 115040, scrunched: 4840  },
+];
+
+// ── AXP metadata comment blocks (right column) ────────────────────────────────
+const META_BLOCKS = CARD_STATS.map(s => [
+  `<!-- AXP-optimized: ${s.pct}% token reduction -->`,
+  `<!-- original: ${s.original.toLocaleString("en-US")} tokens -->`,
+  `<!-- scrunched: ${s.scrunched.toLocaleString("en-US")} tokens -->`,
+  "<!-- tyrellnexus.com/axp -->",
+]);
+
 // ── Code generation (AXP-scrunched HTML per card type) ───────────────────────
-function generateCode(width: number, height: number, cardType = 0): string {
+function generateCode(cardType = 0): string {
   const library = CODE_LIBRARIES[cardType % CODE_LIBRARIES.length];
-
-  let flow = library.join(" ");
-  const totalChars = width * height;
-  while (flow.length < totalChars + width) {
-    flow += " " + library[Math.floor(Math.random() * library.length)];
-  }
-
-  let out = "";
-  let offset = 0;
-  for (let row = 0; row < height; row++) {
-    let line = flow.slice(offset, offset + width);
-    if (line.length < width) line = line + " ".repeat(width - line.length);
-    out += line + (row < height - 1 ? "\n" : "");
-    offset += width;
-  }
-  return out;
+  return library.join("\n");
 }
 
-function calcCodeDimensions(cardW: number, cardH: number) {
-  const fontSize = 13;
-  const lineHeight = 17;
-  const charWidth = 7.8;
-  return {
-    width: Math.floor((cardW - 20) / charWidth),
-    height: Math.floor((cardH - 20) / lineHeight),
-    fontSize,
-    lineHeight,
-  };
+function generateMeta(cardType = 0): string {
+  return META_BLOCKS[cardType % META_BLOCKS.length].join("\n");
 }
 
 // ── Pixel colors — 80% AI Green, 20% warm neutral ─────────────────────────
@@ -726,21 +855,20 @@ export default function CardStreamSection() {
   const containerRef    = useRef<HTMLDivElement>(null);
   const scannerCanvasRef = useRef<HTMLCanvasElement>(null);
   const cardLineRef     = useRef<HTMLDivElement>(null);
-  const asciiRefs       = useRef<(HTMLDivElement | null)[]>([]);
   const tokenNumRef     = useRef<HTMLSpanElement>(null);
   const percentRef      = useRef<HTMLSpanElement>(null);
   const badgeScanRef    = useRef({ currentCardKey: "", tokenCount: 0, scanComplete: false });
 
   const stateRef = useRef({
     position: 0,
-    velocity: 150,
+    velocity: 188,
     direction: -1,
     isAnimating: true,
     isDragging: false,
     lastMouseX: 0,
     mouseVelocity: 0,
     friction: 0.96,
-    minVelocity: 38,
+    minVelocity: 48,
     containerWidth: 0,
     cardLineWidth: 0,
     animId: 0,
@@ -771,6 +899,7 @@ export default function CardStreamSection() {
       let anyScanning = false;
       let maxScanProgress = 0;
       let activeScanKey = "";
+      let activeCardType = 0;
 
       cardLine!.querySelectorAll<HTMLElement>(".card-wrapper").forEach((wrapper, idx) => {
         const rect = wrapper.getBoundingClientRect();
@@ -793,6 +922,7 @@ export default function CardStreamSection() {
           if (progress > maxScanProgress) {
             maxScanProgress = progress;
             activeScanKey = `w-${idx}`;
+            activeCardType = idx % CARD_COMPONENTS.length;
           }
 
           if (!wrapper.hasAttribute("data-scanned") && intLeft > 0) {
@@ -830,8 +960,9 @@ export default function CardStreamSection() {
           if (percentRef.current) percentRef.current.textContent = "0% smaller";
         }
 
-        const targetCount = Math.round(maxScanProgress * 122561);
-        const targetPct   = Math.round(maxScanProgress * 99);
+        const stats = CARD_STATS[activeCardType];
+        const targetCount = Math.round(maxScanProgress * stats.original);
+        const targetPct   = Math.round(maxScanProgress * stats.pct);
         if (targetCount !== badge.tokenCount) {
           badge.tokenCount = targetCount;
           if (tokenNumRef.current) {
@@ -855,8 +986,8 @@ export default function CardStreamSection() {
         s.position += s.velocity * s.direction * dt;
       }
 
-      if (s.position < -s.cardLineWidth) s.position = s.containerWidth;
-      else if (s.position > s.containerWidth) s.position = -s.cardLineWidth;
+      if (s.position < -s.cardLineWidth) s.position += s.cardLineWidth;
+      else if (s.position > 0) s.position -= s.cardLineWidth;
 
       cardLine!.style.transform = `translateX(${s.position}px)`;
       updateClipping();
@@ -870,15 +1001,6 @@ export default function CardStreamSection() {
       cardLine!.style.transform = `translateX(${stateRef.current.position}px)`;
       updateClipping();
     });
-
-    const codeInterval = setInterval(() => {
-      asciiRefs.current.forEach((el, i) => {
-        if (el && Math.random() < 0.15) {
-          const { width, height } = calcCodeDimensions(CARD_WIDTH, CARD_HEIGHT);
-          el.textContent = generateCode(width, height, i % CARD_COMPONENTS.length);
-        }
-      });
-    }, 200);
 
     function startDrag(clientX: number) {
       const s = stateRef.current;
@@ -924,7 +1046,6 @@ export default function CardStreamSection() {
 
     return () => {
       cancelAnimationFrame(stateRef.current.animId);
-      clearInterval(codeInterval);
       scanner.stop();
       document.removeEventListener("mousemove", mouseMoveHandler);
       document.removeEventListener("mouseup", endDrag);
@@ -932,8 +1053,6 @@ export default function CardStreamSection() {
       window.removeEventListener("resize", onResize);
     };
   }, []);
-
-  const { width: codeW, height: codeH, fontSize, lineHeight } = calcCodeDimensions(CARD_WIDTH, CARD_HEIGHT);
 
   return (
     <section
@@ -959,12 +1078,35 @@ export default function CardStreamSection() {
                 </div>
                 {/* Agent view — AXP code */}
                 <div className="card card-ascii">
-                  <div
-                    className="ascii-content"
-                    ref={(el) => { asciiRefs.current[i] = el; }}
-                    style={{ fontSize, lineHeight: lineHeight + "px" }}
-                  >
-                    {generateCode(codeW, codeH, i % CARD_COMPONENTS.length)}
+                  {/* Fade mask wrapper covers both columns */}
+                  <div style={{
+                    position: "absolute", inset: 0, display: "flex",
+                    WebkitMaskImage: "linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.95) 55%, rgba(0,0,0,0.5) 82%, rgba(0,0,0,0.08) 100%)",
+                    maskImage: "linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.95) 55%, rgba(0,0,0,0.5) 82%, rgba(0,0,0,0.08) 100%)",
+                    animation: "glitch 0.12s infinite linear alternate-reverse",
+                  }}>
+                    {/* Left column: structured HTML */}
+                    <div style={{
+                      flex: "0 0 52%", height: "100%", overflow: "hidden",
+                      fontFamily: "var(--font-ibm-plex-mono), 'Courier New', monospace",
+                      fontSize: 13, lineHeight: "17px",
+                      color: "rgba(29,17,7,0.62)",
+                      whiteSpace: "pre-wrap", padding: "18px 8px 18px 20px",
+                      boxSizing: "border-box",
+                    }}>
+                      {generateCode(i % CARD_COMPONENTS.length)}
+                    </div>
+                    {/* Right column: AXP metadata comments */}
+                    <div style={{
+                      flex: "0 0 48%", height: "100%", overflow: "hidden",
+                      fontFamily: "var(--font-ibm-plex-mono), 'Courier New', monospace",
+                      fontSize: 13, lineHeight: "17px",
+                      color: "rgba(29,17,7,0.45)",
+                      whiteSpace: "pre-wrap", padding: "18px 20px 18px 0",
+                      boxSizing: "border-box",
+                    }}>
+                      {generateMeta(i % CARD_COMPONENTS.length)}
+                    </div>
                   </div>
                 </div>
               </div>
