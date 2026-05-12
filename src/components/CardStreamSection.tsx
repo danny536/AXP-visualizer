@@ -813,11 +813,19 @@ const CARD_STATS = [
 ];
 
 // ── AXP metadata comment blocks (right column) ────────────────────────────────
-const META_BLOCKS = CARD_STATS.map(s => [
+const CARD_URLS = [
+  "tyrellnexus.com/documentation", // Dark
+  "tyrellnexus.com",               // Hero (home)
+  "tyrellnexus.com/pricing",       // Pricing
+  "tyrellnexus.com/case-study",    // Cream
+  "tyrellnexus.com/blog",          // Blog
+  "tyrellnexus.com/product",       // Ink
+];
+const META_BLOCKS = CARD_STATS.map((s, i) => [
   `<!-- AXP-optimized: ${s.pct}% token reduction -->`,
   `<!-- original: ${s.original.toLocaleString("en-US")} tokens -->`,
   `<!-- scrunched: ${s.scrunched.toLocaleString("en-US")} tokens -->`,
-  "<!-- tyrellnexus.com/axp -->",
+  `<!-- ${CARD_URLS[i]} -->`,
 ]);
 
 // ── Code generation (AXP-scrunched HTML per card type) ───────────────────────
