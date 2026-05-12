@@ -1235,10 +1235,11 @@ export default function CardStreamSection() {
       document.body.style.cursor = "";
     }
     const mouseMoveHandler = (e: MouseEvent) => { if (stateRef.current.isDragging) onDrag(e.clientX); };
-    cardLine.addEventListener("mousedown", (e) => startDrag(e.clientX));
+    const isMobile = () => window.innerWidth <= 640;
+    cardLine.addEventListener("mousedown", (e) => { if (!isMobile()) startDrag(e.clientX); });
     document.addEventListener("mousemove", mouseMoveHandler);
     document.addEventListener("mouseup", endDrag);
-    cardLine.addEventListener("touchstart", (e) => { e.preventDefault(); startDrag(e.touches[0].clientX); }, { passive: false });
+    cardLine.addEventListener("touchstart", (e) => { if (isMobile()) return; e.preventDefault(); startDrag(e.touches[0].clientX); }, { passive: false });
     document.addEventListener("touchmove", (e) => { if (stateRef.current.isDragging) { e.preventDefault(); onDrag(e.touches[0].clientX); } }, { passive: false });
     document.addEventListener("touchend", endDrag);
     cardLine.addEventListener("selectstart", (e) => e.preventDefault());

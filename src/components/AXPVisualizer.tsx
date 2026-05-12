@@ -10,18 +10,19 @@ export default function AXPVisualizer() {
 
 {/* ── Hero text ── */}
       <div
-        className="flex flex-col sm:flex-row items-start"
-        style={{ maxWidth: 1280, margin: "0 auto", width: "100%", padding: "64px 120px 48px", gap: 160 }}
+        className="flex flex-col lg:flex-row items-start hero-layout"
+        style={{ maxWidth: 1280, margin: "0 auto", width: "100%" }}
       >
         {/* Left — headline, fixed width so right column can grow independently */}
-        <div style={{ flex: "0 0 535px", minWidth: 0 }}>
+        <div className="hero-left">
           <p
             style={{ fontFamily: "var(--font-inter)", color: "#93886F", fontSize: 11, fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 20 }}
           >
             AXP
           </p>
           <h1
-            style={{ fontFamily: "var(--font-newsreader)", color: "#1D1107", fontSize: 48, fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.96px", margin: 0 }}
+            className="hero-h1"
+            style={{ fontFamily: "var(--font-newsreader)", color: "#1D1107", fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.96px", margin: 0 }}
           >
             Your site isn&apos;t built for AI.<br />
             <em style={{ fontStyle: "italic" }}>Now it can be.</em>
@@ -29,7 +30,7 @@ export default function AXPVisualizer() {
         </div>
 
         {/* Right — description + CTA */}
-        <div style={{ flex: "1 1 0", minWidth: 0, display: "flex", flexDirection: "column", gap: 28, paddingTop: 33 }}>
+        <div className="hero-right-padtop" style={{ flex: "1 1 0", minWidth: 0, display: "flex", flexDirection: "column", gap: 28 }}>
           <p
             style={{ fontFamily: "var(--font-inter)", color: "#1D1107", fontSize: 18, lineHeight: 1.5, letterSpacing: "-0.36px", fontWeight: 400, margin: 0 }}
           >

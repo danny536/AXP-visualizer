@@ -284,7 +284,71 @@ body {
   100% { transform: translateX(100%); opacity: 0; }
 }
 
-/* ── Mobile: shrink cards + beam, preserve token badge size ── */
+/* ── Hero section responsive layout (mobile-first) ── */
+
+/* Mobile default: stacked, compact */
+.hero-layout {
+  padding: 40px 28px 32px;
+  gap: 28px;
+}
+.hero-left {
+  width: 100%;
+  min-width: 0;
+}
+.hero-right-padtop {
+  padding-top: 0;
+}
+.hero-h1 {
+  font-size: 36px;
+}
+
+/* Tablet (640–1023px): stacked, more breathing room */
+@media (min-width: 640px) {
+  .hero-layout {
+    padding: 48px 48px 40px;
+    gap: 32px;
+  }
+  .hero-h1 {
+    font-size: 42px;
+  }
+}
+
+/* Desktop (1024–1279px): switch to row, tighter spacing */
+@media (min-width: 1024px) {
+  .hero-layout {
+    padding: 56px 60px 48px;
+    gap: 80px;
+  }
+  .hero-left {
+    flex: 0 0 400px;
+    width: auto;
+  }
+  .hero-right-padtop {
+    padding-top: 16px;
+  }
+  .hero-h1 {
+    font-size: 44px;
+  }
+}
+
+/* Wide desktop (1280px+): full design */
+@media (min-width: 1280px) {
+  .hero-layout {
+    padding: 64px 120px 48px;
+    gap: 160px;
+  }
+  .hero-left {
+    flex: 0 0 535px;
+  }
+  .hero-right-padtop {
+    padding-top: 33px;
+  }
+  .hero-h1 {
+    font-size: 48px;
+  }
+}
+
+/* ── Mobile: shrink cards + beam, preserve token badge size, disable drag ── */
 @media (max-width: 640px) {
   .card-stream-section {
     height: 435px !important;
@@ -294,5 +358,12 @@ body {
   }
   .card-scanner-canvas {
     height: 435px !important;
+  }
+  .card-line {
+    cursor: default !important;
+  }
+  .card-line:active,
+  .card-line.dragging {
+    cursor: default !important;
   }
 }
