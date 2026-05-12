@@ -1260,7 +1260,7 @@ export default function CardStreamSection() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full"
+      className="relative w-full card-stream-section"
       style={{ height: SECTION_HEIGHT, background: BG }}
     >
       {/* Inner clip — keeps card stream from overflowing horizontally/vertically */}
@@ -1322,6 +1322,7 @@ export default function CardStreamSection() {
       {/* Scanner beam canvas — extends CANVAS_EXTEND_UP px above section so beam shows behind pill */}
       <canvas
         ref={scannerCanvasRef}
+        className="card-scanner-canvas"
         style={{
           position: "absolute", top: -CANVAS_EXTEND_UP, left: -3,
           width: "100vw", height: CANVAS_HEIGHT,
