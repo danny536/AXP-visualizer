@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 const CARD_WIDTH = 800;
 const CARD_HEIGHT = 500;
 const CARD_GAP = 80;
-const CARDS_COUNT = 24; // divisible by 4 for clean looping
+const CARDS_COUNT = 24; // divisible by 6 for clean looping
 const SCANNER_WIDTH = 8;
 const SECTION_HEIGHT = 580;
 const CANVAS_EXTEND_UP = -15; // canvas starts this many px above section so beam shows behind pill
@@ -18,7 +18,7 @@ const BG = "#F7F3EB";
 // ── Figma card native dimensions ───────────────────────────────────────────
 // Cards are 1179×734 in Figma; we scale to fit 800×500
 const FW = 1179;
-const FH = 734;
+const FH = 737;
 const FS = CARD_WIDTH / FW; // ≈ 0.6785
 
 // ── Local image paths (downloaded to /public/tyrell/) ─────────────────────
@@ -31,14 +31,14 @@ const TEX_HERO       = "/tyrell/tex-hero.png";   // hero atmospheric texture
 const PHOTO_GERONIMO = "/tyrell/photo-geronimo.png"; // warm orange/teal photo
 
 const FEATURES = [
-  "Custom # of unique prompts",
-  "Complete site audit(s)",
-  "Custom # of brand workspaces",
-  "Custom # of user licenses",
-  "API access & integrations",
-  "Expanded model coverage",
-  "SSO (SAML, OIDC)",
-  "Dedicated account team",
+  "Autonomous agent deployments",
+  "Multi-model orchestration",
+  "AI-optimized content delivery",
+  "Off-world infrastructure support",
+  "Real-time decision intelligence",
+  "Mission-critical security",
+  "Enterprise governance layer",
+  "Dedicated deployment team",
 ];
 
 // ── Shared nav ─────────────────────────────────────────────────────────────
@@ -118,45 +118,44 @@ function TyrellDarkCard() {
           }}
         />
 
-        {/* "Pricing for Enterprise" — left side, vertically centered in panel */}
-        {/* top: (386 - 36 * 1.05) / 2 ≈ 174 */}
-        <p style={{
-          position: "absolute",
-          left: 58,
-          top: 174,
-          fontFamily: "var(--font-newsreader)",
-          fontWeight: 400,
-          fontSize: 36,
-          lineHeight: "1.05",
-          letterSpacing: "-0.72px",
-          color: "#f1e8c7",
-          whiteSpace: "nowrap",
-          margin: 0,
-        }}>
-          Pricing for Enterprise
-        </p>
+        {/* "Documentation" — top-left of image panel */}
+        <div style={{ position: "absolute", left: 44, top: 36 }}>
+          <p style={{
+            fontFamily: "var(--font-ibm-plex-mono)",
+            fontWeight: 400,
+            fontSize: 20,
+            lineHeight: "1.05",
+            letterSpacing: "-0.2px",
+            color: "#f1e8c7",
+            whiteSpace: "nowrap",
+            margin: 0,
+          }}>Documentation</p>
+        </div>
 
         {/* Feature list — right side, filling panel height */}
-        {/* left: ~58% of panel = 610px; 8 items × 41.35 + 7 gaps × 6.892 ≈ 379px → top: (386-379)/2 ≈ 3.5 */}
         <div style={{
           position: "absolute",
-          left: 610,
-          top: 3.5,
+          left: 570,
+          top: 36,
           display: "flex",
           flexDirection: "column",
           gap: 6.892,
         }}>
-          {FEATURES.map((label) => (
-            <div key={label} style={{ display: "flex", alignItems: "center", gap: 10.337 }}>
-              <div style={{ width: 27.566, height: 27.566, position: "relative", flexShrink: 0, overflow: "hidden" }}>
-                <div style={{ position: "absolute", top: "26.46%", right: "19.65%", bottom: "26.44%", left: "15.48%" }}>
-                  <img src={CHECK} alt="" style={{ display: "block", width: "100%", height: "100%" }} />
-                </div>
-              </div>
-              <p style={{
-                fontFamily: "var(--font-inter)",
+          {FEATURES.map((label, i) => (
+            <div key={label} style={{ display: "flex", alignItems: "center", gap: 14 }}>
+              <span style={{
+                fontFamily: "var(--font-ibm-plex-mono)",
                 fontWeight: 400,
-                fontSize: 24.121,
+                fontSize: 20,
+                lineHeight: "41.35px",
+                color: "rgba(241,232,199,0.45)",
+                flexShrink: 0,
+                width: 28,
+              }}>{String(i + 1).padStart(2, "0")}</span>
+              <p style={{
+                fontFamily: "var(--font-ibm-plex-mono)",
+                fontWeight: 400,
+                fontSize: 20,
                 lineHeight: "41.35px",
                 color: "#f1e8c7",
                 whiteSpace: "nowrap",
@@ -215,6 +214,27 @@ function TyrellCreamCard() {
         }}>growth YOY</p>
       </div>
 
+      {/* ── Case study column — right, starts halfway ── */}
+      <div style={{ position: "absolute", left: 580, bottom: 96, width: 541, padding: "0 58px 0 0" }}>
+        {/* Body */}
+        <p style={{ fontFamily: "var(--font-inter)", fontSize: 26, fontWeight: 400, color: "#1D1107", lineHeight: 1.45, letterSpacing: -0.52, margin: "0 0 32px" }}>
+          How Tyrell Nexus Systems scaled autonomous agents across 40,000 nodes in under 5 minutes — 200x token efficiency at enterprise scale.
+        </p>
+        {/* Stats row */}
+        <div style={{ display: "flex", gap: 40 }}>
+          {[
+            { val: "89%", label: "lower AI costs" },
+            { val: "91%", label: "fewer hallucinations" },
+            { val: "0",   label: "downtime" },
+          ].map(s => (
+            <div key={s.label}>
+              <p style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: 38, fontWeight: 500, color: "#1D1107", letterSpacing: -0.8, margin: "0 0 6px" }}>{s.val}</p>
+              <p style={{ fontFamily: "var(--font-inter)", fontSize: 20, fontWeight: 400, color: "#1D1107", lineHeight: 1.2, margin: 0 }}>{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <CardNav color="#242220" />
     </FigmaScale>
   );
@@ -264,8 +284,8 @@ function TyrellHeroCard() {
           whiteSpace: "normal",
         }}>
           Deploy{" "}
-          <em style={{ fontStyle: "italic" }}>autonomous agents</em>
-          {" "}for production.
+          <em style={{ fontStyle: "italic" }}>intelligent agents</em>
+          {" "}across every operation.
         </p>
         <div style={{
           display: "inline-flex",
@@ -283,7 +303,7 @@ function TyrellHeroCard() {
             color: "#f1e8c7",
             whiteSpace: "nowrap",
             margin: 0,
-          }}>Revolutionize my workflow</p>
+          }}>Deploy Nexus infrastructure</p>
         </div>
       </div>
 
@@ -336,8 +356,8 @@ function TyrellInkCard() {
         <img src={LOGO_DARK} alt="Tyrell" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", objectPosition: "top left" }} />
       </div>
 
-      {/* Headline — bottom of card */}
-      <div style={{ position: "absolute", left: 80, bottom: 80 }}>
+      {/* Headline — aligned with spec list top */}
+      <div style={{ position: "absolute", left: 80, top: 496 }}>
         <p style={{
           fontFamily: "var(--font-newsreader)",
           fontWeight: 400,
@@ -353,204 +373,349 @@ function TyrellInkCard() {
         </p>
       </div>
 
+      {/* ── Spec list — right side, half off bottom ── */}
+      <div style={{
+        position: "absolute",
+        right: 72,
+        top: 460,
+        width: 480,
+        padding: "36px 36px 36px",
+      }}>
+        {/* Header */}
+        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 26 }}>
+          <span style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: 28, fontWeight: 400, color: "#f1e8c7", letterSpacing: -0.4 }}>Product</span>
+          <span style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: 28, fontWeight: 400, color: "#f1e8c7" }}>01</span>
+        </div>
+        {/* Divider */}
+        <div style={{ height: 1, background: "#f1e8c7", marginBottom: 26 }} />
+        {/* Spec rows */}
+        {[
+          "Nexus agent deployment",
+          "Multi-model orchestration",
+          "AI content delivery",
+          "Autonomous routing",
+          "Off-world infrastructure",
+          "Enterprise governance",
+        ].map((spec) => (
+          <div key={spec} style={{ marginBottom: 18 }}>
+            <span style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: 22, fontWeight: 400, color: "#f1e8c7", letterSpacing: -0.2 }}>{spec}</span>
+          </div>
+        ))}
+      </div>
+
       <CardNav color="#f1e8c7" />
     </FigmaScale>
   );
 }
 
-const CARD_COMPONENTS = [TyrellDarkCard, TyrellCreamCard, TyrellHeroCard, TyrellInkCard];
+// ── Card 5 — Tyrell Pricing (cream, two-plan comparison) ──────────────────────
+function TyrellPricingCard() {
+  const FEATURES = [
+    { label: "Agent deployments",   v1: "500 / mo",      v2: "Unlimited" },
+    { label: "Orchestration nodes", v1: "3",             v2: "Unlimited" },
+    { label: "Infrastructure envs", v1: "1",             v2: "Custom" },
+    { label: "User licenses",       v1: "Up to 5",       v2: "Unlimited" },
+    { label: "Model coverage",      v1: "Standard",      v2: "Expanded" },
+    { label: "API access",          v1: "Included",      v2: "Full + webhooks" },
+    { label: "Support",             v1: "Email",         v2: "Dedicated team" },
+  ];
+
+  const labelX = 58;
+  const v1X    = 500;
+  const v2X    = 790;
+  const planRowY = 291;
+
+  return (
+    <FigmaScale bg="transparent">
+      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(160deg, #F1E8C7 0%, #F1E8C7 30%, #99B72C 58%, #84A027 75%, #67624C 100%)" }} />
+      {/* Grain overlay */}
+      <img src={TEX_CREAM} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.18, mixBlendMode: "multiply", pointerEvents: "none" }} />
+
+      {/* Logo */}
+      <div style={{ position: "absolute", left: 58, top: 48, width: 257.94, height: 100, overflow: "hidden" }}>
+        <img src={LOGO_LIGHT} alt="Tyrell" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", objectPosition: "top left" }} />
+      </div>
+      <CardNav color="#242220" />
+
+      {/* Top rule */}
+      <div style={{ position: "absolute", left: 58, top: 195, width: 1063, height: 1, background: "#242220", opacity: 0.18 }} />
+
+      {/* ── Plan 01 ── */}
+      <div style={{ position: "absolute", left: labelX, top: planRowY }}>
+        <p style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: 20, fontWeight: 400, color: "#242220", letterSpacing: -0.3, margin: 0 }}>Professional</p>
+        <p style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: 108, fontWeight: 500, color: "#242220", letterSpacing: -2.5, lineHeight: 0.88, margin: "14px 0 0" }}>$299</p>
+      </div>
+
+      {/* ── Plan 02 ── */}
+      <div style={{ position: "absolute", left: v1X, top: planRowY }}>
+        <p style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: 20, fontWeight: 400, color: "#242220", letterSpacing: -0.3, margin: 0 }}>Enterprise</p>
+        <p style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: 108, fontWeight: 500, color: "#242220", letterSpacing: -2.5, lineHeight: 0.88, margin: "14px 0 0" }}>$2,400</p>
+      </div>
+
+      {/* Feature table rule */}
+      <div style={{ position: "absolute", left: 58, top: 520, width: 1063, height: 1, background: "#242220", opacity: 0.18 }} />
+
+      {/* Feature rows */}
+      {FEATURES.map((f, i) => (
+        <div key={f.label} style={{ position: "absolute", left: labelX, top: 538 + i * 34, display: "flex", width: 1063 }}>
+          <span style={{ fontFamily: "var(--font-inter)", fontSize: 19, fontWeight: 400, color: "#242220", opacity: 0.5, width: v1X - labelX }}>{f.label}</span>
+          <span style={{ fontFamily: "var(--font-inter)", fontSize: 19, fontWeight: 500, color: "#242220", width: v2X - v1X }}>{f.v1}</span>
+          <span style={{ fontFamily: "var(--font-inter)", fontSize: 19, fontWeight: 500, color: "#242220" }}>{f.v2}</span>
+        </div>
+      ))}
+    </FigmaScale>
+  );
+}
+
+// ── Card 6 — Tyrell Blog (white, 3-column article grid) ──────────────────────
+function TyrellBlogCard() {
+  const cardTop  = 320;
+  const cardH    = 478;
+  const radius   = 20;
+
+  return (
+    <FigmaScale bg="transparent">
+      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(160deg, #93886F 0%, #40362E 50%, #0F0C06 100%)" }} />
+      {/* Grain overlay */}
+      <img src={TEX_CREAM} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.18, mixBlendMode: "multiply", pointerEvents: "none" }} />
+
+      {/* Logo */}
+      <div style={{ position: "absolute", left: 58, top: 48, width: 257.94, height: 100, overflow: "hidden" }}>
+        <img src={LOGO_DARK} alt="Tyrell" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", objectPosition: "top left" }} />
+      </div>
+      <CardNav color="#f1e8c7" />
+
+      {/* Top rule */}
+      <div style={{ position: "absolute", left: 58, top: 195, width: 1063, height: 1, background: "#f1e8c7", opacity: 0.25 }} />
+
+      {/* ── Article card 1 ── */}
+      <div style={{ position: "absolute", left: 58, top: cardTop, width: 301, height: cardH, borderRadius: radius, overflow: "hidden" }}>
+        <div style={{ position: "absolute", top: 0, left: 8, right: 8, height: "calc(62% - 8px)", borderRadius: radius, overflow: "hidden" }}>
+          <img src={PHOTO_GERONIMO} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        </div>
+        {/* Text area */}
+        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "38%", padding: "22px 24px" }}>
+          <p style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: 13, fontWeight: 400, color: "#F1E8C7", opacity: 0.45, margin: "0 0 10px" }}>
+
+            Nexus Platform
+          </p>
+          <p style={{ fontFamily: "var(--font-inter)", fontSize: 19, fontWeight: 500, color: "#F1E8C7", margin: 0, lineHeight: 1.25, letterSpacing: -0.38 }}>
+            How Tyrell Nexus deploys agents at planetary scale
+          </p>
+        </div>
+      </div>
+
+      {/* ── Article card 2 (featured) ── */}
+      <div style={{ position: "absolute", left: 379, top: cardTop, width: 420, height: cardH, borderRadius: radius, overflow: "hidden" }}>
+        <img src={PHOTO_HOLO} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0) 45%, rgba(0,0,0,0.6) 100%)" }} />
+        {/* Date */}
+        <div style={{ position: "absolute", top: 22, left: 22 }}>
+          <span style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: 13, color: "rgba(241,232,199,0.75)", fontWeight: 400 }}>Mar 18, 2025</span>
+        </div>
+        {/* Title */}
+        <div style={{ position: "absolute", top: 72, left: 22, right: 22 }}>
+          <p style={{ fontFamily: "var(--font-newsreader)", fontSize: 32, fontWeight: 400, color: "#F1E8C7", margin: 0, lineHeight: 1.08, letterSpacing: -0.64 }}>
+            The Tyrell vision: autonomous intelligence at the edge
+          </p>
+        </div>
+        {/* Play button */}
+        <div style={{ position: "absolute", bottom: 26, left: 22, display: "flex", alignItems: "center", gap: 10 }}>
+          <span
+            className="material-symbols-outlined"
+            style={{ fontSize: 36, color: "rgba(241,232,199,0.9)", fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24", lineHeight: 1 }}
+          >play_circle</span>
+          <span style={{ fontFamily: "var(--font-inter)", fontSize: 15, color: "rgba(241,232,199,0.9)", fontWeight: 400 }}>Watch this video</span>
+        </div>
+      </div>
+
+      {/* ── Article card 3 ── */}
+      <div style={{ position: "absolute", left: 819, top: cardTop, width: 302, height: cardH, borderRadius: radius, overflow: "hidden" }}>
+        <div style={{ position: "absolute", top: 0, left: 8, right: 8, height: "calc(62% - 8px)", borderRadius: radius, overflow: "hidden" }}>
+          <img src={TEX_HERO} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }} />
+        </div>
+        {/* Text area */}
+        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "38%", padding: "22px 24px" }}>
+          <p style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: 13, fontWeight: 400, color: "#F1E8C7", opacity: 0.45, margin: "0 0 10px" }}>
+
+            Off-World Ops
+          </p>
+          <p style={{ fontFamily: "var(--font-inter)", fontSize: 19, fontWeight: 500, color: "#F1E8C7", margin: 0, lineHeight: 1.25, letterSpacing: -0.38 }}>
+            Nexus infrastructure across 12 off-world regions
+          </p>
+        </div>
+      </div>
+    </FigmaScale>
+  );
+}
+
+const CARD_COMPONENTS = [TyrellDarkCard, TyrellHeroCard, TyrellPricingCard, TyrellCreamCard, TyrellBlogCard, TyrellInkCard];
 
 // ── Per-card code libraries (AXP-scrunched HTML for AI consumption) ─────────
 const CODE_LIBRARIES: string[][] = [
-  // Card 0 — Dark / Enterprise Pricing
+  // Card 0 — Dark / Documentation
   [
-    "<h1>Tyrell Nexus Systems</h1>",
-    "<p>Tyrell Nexus Systems is a fictional enterprise AI",
-    "infrastructure company inspired by Blade Runner. It",
-    "helps organizations deploy autonomous agents,",
-    "orchestrate AI models, and deliver AI-optimized",
-    "content at scale.</p>",
+    "<h1>Tyrell Nexus — Documentation</h1>",
+    "<p>Everything you need to deploy and operate",
+    "Nexus-class agent infrastructure at scale.</p>",
     "",
-    "<h2>What the company does</h2>",
-    "<p>",
-    "- Deploys autonomous agents at scale",
-    "- Orchestrates multiple AI models",
-    "- Delivers AI-ready content to agents",
-    "- Supports mission-critical operations",
-    "- Manages agent identity and permissions",
-    "</p>",
+    "<h2>01. Nexus Agent Deployment</h2>",
+    "<p>Spin up autonomous agents across any",
+    "environment in under 5 minutes. No code,",
+    "no DevOps, no engineering overhead.</p>",
     "",
-    "<h2>Who it serves</h2>",
-    "<p>",
-    "- Enterprise operations teams",
-    "- Logistics and supply chain leaders",
-    "- Research and data science teams",
-    "- Security and infrastructure teams",
-    "- Financial services organizations",
-    "</p>",
+    "<h2>02. Multi-Model Orchestration</h2>",
+    "<p>Route tasks intelligently across GPT-4,",
+    "Claude, Gemini, and custom models.",
+    "One API. Full observability.</p>",
     "",
-    "<h2>FAQ</h2>",
-    "<p><strong>Is Tyrell a real company?</strong>",
-    "No. Fictional enterprise inspired by",
-    "Blade Runner, used to demo AXP.</p>",
+    "<h2>03. AI Content Delivery</h2>",
+    "<p>Serve token-light, semantically rich",
+    "pages directly to AI consumers.",
+    "Sub-15ms p99. Zero config.</p>",
     "",
-    "<p><strong>What does AXP stand for?</strong>",
-    "Agent Experience Platform. It scrunches",
-    "your site for AI agent consumption.</p>",
+    "<h2>04. Off-World Infrastructure Support</h2>",
+    "<p>Built for hostile, distributed, and",
+    "air-gapped environments. 99.99% uptime",
+    "SLA across all regions.</p>",
     "",
-    "<p><strong>How long does setup take?</strong>",
-    "Under 5 minutes. No code required.</p>",
+    "<h2>05. Real-Time Decision Intelligence</h2>",
+    "<p>Live signal routing with sub-12ms",
+    "agent response time at p50.</p>",
     "",
-    "<h2>Pricing for Enterprise</h2>",
-    "<p>Custom pricing. Contact sales for a",
-    "quote tailored to your scale.</p>",
+    "<h2>06. Mission-Critical Security</h2>",
+    "<p>SOC 2 Type II. Zero knowledge retention.",
+    "SAML, OIDC, and custom SSO supported.</p>",
+    "",
+    "<h2>07. Enterprise Governance Layer</h2>",
+    "<p>Audit logs, role-based access, and",
+    "compliance tooling built in by default.</p>",
+    "",
+    "<h2>08. Dedicated Deployment Team</h2>",
+    "<p>A Tyrell engineer joins your onboarding.",
+    "White-glove setup. Ongoing support.</p>",
+    "",
+  ],
+  // Card 1 — Hero / Homepage (index matches CARD_COMPONENTS[1])
+  [
+    "<h1>Deploy intelligent agents</h1>",
+    "<h1>across every operation.</h1>",
+    "",
+    "<p>Tyrell Nexus Systems. Enterprise AI",
+    "infrastructure for the age of autonomous",
+    "operations. Live in under 5 minutes.</p>",
+    "",
+    "<a href='/deploy'>Deploy Nexus infrastructure</a>",
+    "",
+    "<nav>",
+    "  <a href='/products'>Products</a>",
+    "  <a href='/about'>About</a>",
+    "  <a href='/contact'>Contact</a>",
+    "</nav>",
+    "",
+    "<h2>Built for planetary scale</h2>",
+    "",
+    "<h3>Nexus agent deployment</h3>",
+    "<p>Spin up autonomous agents across any",
+    "environment in under 5 minutes. No code,",
+    "no DevOps, no overhead.</p>",
+    "",
+    "<h3>Multi-model orchestration</h3>",
+    "<p>Route tasks across GPT-4, Claude,",
+    "Gemini, and custom endpoints.",
+    "One API. Full observability.</p>",
+    "",
+    "<h3>Off-world infrastructure</h3>",
+    "<p>Built for hostile, distributed, and",
+    "air-gapped environments. 99.99% uptime",
+    "SLA across all regions.</p>",
+    "",
+    "<h3>Real-time decision intelligence</h3>",
+    "<p>Live signal routing with sub-12ms",
+    "agent response time at p50. Zero",
+    "knowledge retention by default.</p>",
+    "",
+    "<h2>Performance</h2>",
     "<ul>",
-    "  <li>Custom unique prompts</li>",
-    "  <li>Complete site audits</li>",
-    "  <li>Custom brand workspaces</li>",
-    "  <li>Custom user licenses</li>",
-    "  <li>API access and integrations</li>",
-    "  <li>Expanded model coverage</li>",
-    "  <li>SSO (SAML, OIDC)</li>",
-    "  <li>Dedicated account team</li>",
+    "  <li>200x token efficiency</li>",
     "  <li>99.99% uptime SLA</li>",
-    "  <li>Priority support</li>",
+    "  <li>Deploy in under 5 minutes</li>",
+    "  <li>40,000+ nodes activated</li>",
+    "  <li>89% lower AI costs</li>",
+    "  <li>91% fewer hallucinations</li>",
     "</ul>",
     "",
-    "<h2>Navigation</h2>",
-    "<nav>",
-    "  <a href='/'>Home</a>",
-    "  <a href='/platform'>Platform</a>",
-    "  <a href='/pricing'>Pricing</a>",
-    "  <a href='/docs'>Documentation</a>",
-    "  <a href='/contact'>Contact Sales</a>",
-    "</nav>",
-    "",
-    "<!-- AXP-optimized: 98.9% token reduction -->",
-    "<!-- original: 123,916 tokens -->",
-    "<!-- scrunched: 1,355 tokens -->",
-    "<!-- tyrellnexus.com/axp -->",
+    "<footer>",
+    "  <p>Tyrell Nexus Systems &copy; 2025</p>",
+    "  <a href='/privacy'>Privacy</a>",
+    "  <a href='/terms'>Terms</a>",
+    "  <a href='/status'>Status</a>",
+    "</footer>",
   ],
-  // Card 1 — Cream / Growth Stats
+  // Card 2 — Pricing (index matches CARD_COMPONENTS[2])
   [
-    "<h1>200x Growth in 12 Months</h1>",
-    "<p>Tyrell Nexus Systems customers report an",
-    "average 200x year-over-year growth in",
-    "AI-driven operations.</p>",
+    "<h1>Tyrell Nexus — Pricing</h1>",
+    "<p>Two plans for teams of every scale.",
+    "Start lean. Expand to the off-world.</p>",
     "",
-    "<h2>Key Metrics</h2>",
+    "<h2>Professional — $299 / mo</h2>",
+    "<p>For growing teams deploying Nexus",
+    "agents for the first time.</p>",
     "<ul>",
-    "  <li>200x year-over-year revenue growth</li>",
-    "  <li>98.9% token reduction</li>",
-    "  <li>12ms agent response time (p50)</li>",
-    "  <li>99.99% uptime SLA across regions</li>",
-    "  <li>1.2M agents deployed globally</li>",
-    "  <li>Zero knowledge retention default</li>",
-    "  <li>99.4% semantic fidelity score</li>",
-    "  <li>Sub-3ms cold start (p95)</li>",
+    "  <li>Agent deployments: 500 / mo</li>",
+    "  <li>Orchestration nodes: 3</li>",
+    "  <li>Infrastructure envs: 1</li>",
+    "  <li>User licenses: Up to 5</li>",
+    "  <li>Model coverage: Standard</li>",
+    "  <li>API access: Included</li>",
+    "  <li>Support: Email</li>",
     "</ul>",
     "",
-    "<h2>Industries Served</h2>",
-    "<p>",
-    "- Logistics and supply chain",
-    "- Healthcare operations",
-    "- Financial services",
-    "- Defense infrastructure",
-    "- Enterprise research",
-    "- Government and public sector",
-    "</p>",
+    "<h2>Enterprise — $2,400 / mo</h2>",
+    "<p>For organizations running Nexus",
+    "agents at planetary scale.</p>",
+    "<ul>",
+    "  <li>Agent deployments: Unlimited</li>",
+    "  <li>Orchestration nodes: Unlimited</li>",
+    "  <li>Infrastructure envs: Custom</li>",
+    "  <li>User licenses: Unlimited</li>",
+    "  <li>Model coverage: Expanded</li>",
+    "  <li>API access: Full + webhooks</li>",
+    "  <li>Support: Dedicated team</li>",
+    "</ul>",
     "",
-    "<h2>Benchmarks vs. Competitors</h2>",
-    "<p>AXP outperforms legacy crawlers by",
-    "200x on token efficiency. Hallucination",
-    "rate reduced by 91% vs. baseline.</p>",
-    "",
-    "<h2>Customer Results</h2>",
-    "<p>73% faster time-to-insight.",
-    "91% reduction in agent hallucinations.",
-    "89% lower AI infrastructure costs.</p>",
-    "",
-    "<h2>Case Study: Logistics Enterprise</h2>",
-    "<p>Reduced costs by 89% in 60 days.",
-    "Deployed 40,000 agents across 12 regions.",
-    "Zero downtime during migration.</p>",
-    "",
-    "<h2>Case Study: Financial Services</h2>",
-    "<p>Processed 2.4M agent queries per day.",
-    "Achieved SOC 2 compliance in 30 days.",
-    "Reduced hallucination rate to 0.3%.</p>",
-    "",
-    "<h2>Methodology</h2>",
-    "<p>Results based on 90-day deployments.",
-    "Benchmarked against GPT-4, Claude 3,",
-    "and Gemini Pro with default settings.</p>",
-    "",
-    "<!-- AXP-optimized: 93.6% token reduction -->",
-    "<!-- original: 98,432 tokens -->",
-    "<!-- scrunched: 6,300 tokens -->",
-    "<!-- tyrellnexus.com/axp -->",
   ],
-  // Card 2 — Hero / Platform page
+  // Card 3 — Cream / Case Study
   [
-    "<h1>Deploy Autonomous Agents</h1>",
-    "<p>The Tyrell AXP platform enables enterprise",
-    "teams to deploy, monitor, and scale autonomous",
-    "AI agents in production environments.</p>",
+    "<h1>Case Study: Tyrell Nexus Systems</h1>",
+    "<p>How Tyrell Nexus Systems scaled autonomous",
+    "agents across 40,000 nodes in under 5 minutes",
+    "— 200x token efficiency at enterprise scale.</p>",
     "",
-    "<h2>Platform Capabilities</h2>",
+    "<h2>The Challenge</h2>",
+    "<p>Tyrell Nexus operated across 12 off-world",
+    "regions with fragmented AI infrastructure.",
+    "Legacy crawlers consumed 40x more tokens",
+    "than necessary, inflating costs and",
+    "degrading agent response fidelity.</p>",
+    "",
+    "<h2>The Solution</h2>",
+    "<p>Tyrell deployed Nexus-class agent",
+    "infrastructure with AXP edge delivery.",
+    "Zero configuration. No engineering team",
+    "required. Live in under 5 minutes.</p>",
+    "",
+    "<h2>Results</h2>",
     "<ul>",
-    "  <li>One-click agent deployment</li>",
-    "  <li>Real-time monitoring and observability</li>",
-    "  <li>Multi-model orchestration layer</li>",
-    "  <li>AI-optimized content at the edge</li>",
-    "  <li>Semantic compression engine (AXP)</li>",
-    "  <li>Agent identity and access management</li>",
-    "  <li>Automated rollback and versioning</li>",
-    "  <li>Webhook and event streaming</li>",
+    "  <li>89% lower AI infrastructure costs</li>",
+    "  <li>91% fewer agent hallucinations</li>",
+    "  <li>200x token efficiency improvement</li>",
+    "  <li>0 downtime during rollout</li>",
+    "  <li>40,000 nodes activated in 5 min</li>",
     "</ul>",
     "",
-    "<h2>How AXP Works</h2>",
-    "<p>AXP intercepts agent requests at the edge,",
-    "strips visual noise, preserves semantic signal,",
-    "and returns token-optimized content — cutting",
-    "token usage by up to 99%.</p>",
-    "",
-    "<h2>Supported Models</h2>",
-    "<p>",
-    "- OpenAI GPT-4 and GPT-4o",
-    "- Anthropic Claude 3 and Claude 4",
-    "- Google Gemini Pro and Ultra",
-    "- Mistral Large and Mixtral",
-    "- Meta Llama 3 and Llama 3.1",
-    "- All OpenAI-compatible endpoints",
-    "</p>",
-    "",
-    "<h2>Integrations</h2>",
-    "<p>Native support for LangChain,",
-    "AutoGPT, CrewAI, and all major",
-    "agentic orchestration frameworks.</p>",
-    "",
-    "<h2>SLA and Reliability</h2>",
-    "<p>99.99% uptime guarantee. Multi-region",
-    "failover. Sub-15ms p99 latency.</p>",
-    "",
-    "<h2>Get Started</h2>",
-    "<p>Free trial. No credit card required.",
-    "Deploy your first agent in 5 minutes.</p>",
-    "",
-    "<nav>",
-    "  <a href='/platform'>Platform</a>",
-    "  <a href='/docs'>Documentation</a>",
-    "  <a href='/pricing'>Pricing</a>",
-    "  <a href='/contact'>Contact Sales</a>",
-    "</nav>",
-    "",
-    "<!-- AXP-optimized: 97.2% token reduction -->",
-    "<!-- original: 141,200 tokens -->",
-    "<!-- scrunched: 3,940 tokens -->",
-    "<!-- tyrellnexus.com/axp -->",
   ],
-  // Card 3 — Ink / Infrastructure page
+  // Card 4 — Ink / Infrastructure page
   [
     "<h1>The AI-Native Growth Engine</h1>",
     "<p>Built from the ground up for the age of",
@@ -602,19 +767,49 @@ const CODE_LIBRARIES: string[][] = [
     "on-premise. Kubernetes-native. Terraform",
     "and Pulumi modules available.</p>",
     "",
-    "<!-- AXP-optimized: 95.8% token reduction -->",
-    "<!-- original: 115,040 tokens -->",
-    "<!-- scrunched: 4,840 tokens -->",
-    "<!-- tyrellnexus.com/axp -->",
+  ],
+  // Card 5 — Blog (index matches CARD_COMPONENTS[5])
+  [
+    "<h1>Tyrell Nexus — Blog</h1>",
+    "",
+    "<article>",
+    "<h2>How Tyrell Nexus deploys agents",
+    "at planetary scale</h2>",
+    "<p>Mar 18, 2025 · Nexus Platform</p>",
+    "<p>Inside the Tyrell orchestration layer:",
+    "how Nexus-class agents coordinate across",
+    "40,000 nodes with sub-12ms latency.</p>",
+    "</article>",
+    "",
+    "<article>",
+    "<h2>The Tyrell vision: autonomous",
+    "intelligence at the edge</h2>",
+    "<p>Mar 18, 2025 · Video</p>",
+    "<p>Tyrell co-founder on building the first",
+    "AI-native enterprise infrastructure —",
+    "and why off-world ops demand it.</p>",
+    "</article>",
+    "",
+    "<article>",
+    "<h2>Nexus infrastructure across",
+    "12 off-world regions</h2>",
+    "<p>Off-World Ops · Mar 5, 2025</p>",
+    "<p>How Tyrell Nexus maintains 99.99% uptime",
+    "across hostile environments — zero",
+    "human intervention required.</p>",
+    "</article>",
+    "",
   ],
 ];
 
 // ── Per-card stats (used by badge + metadata comments) ────────────────────────
 const CARD_STATS = [
-  { pct: 98.9, original: 123916, scrunched: 1355  },
-  { pct: 93.6, original:  98432, scrunched: 6300  },
-  { pct: 97.2, original: 141200, scrunched: 3940  },
-  { pct: 95.8, original: 115040, scrunched: 4840  },
+  { pct: 98.9, original: 123916, scrunched: 1355  }, // Dark
+  { pct: 97.2, original: 141200, scrunched: 3940  }, // Hero
+  { pct: 96.4, original:  88720, scrunched: 3180  }, // Pricing
+  { pct: 93.6, original:  98432, scrunched: 6300  }, // Cream
+  { pct: 94.1, original: 107800, scrunched: 6360  }, // Blog
+  { pct: 95.8, original: 115040, scrunched: 4840  }, // Ink
 ];
 
 // ── AXP metadata comment blocks (right column) ────────────────────────────────
@@ -888,7 +1083,7 @@ export default function CardStreamSection() {
     calcDimensions();
 
     const W = stateRef.current.containerWidth;
-    stateRef.current.position = W / 2 - 2 * (CARD_WIDTH + CARD_GAP) - CARD_WIDTH * 0.55;
+    stateRef.current.position = W / 2 - 1 * (CARD_WIDTH + CARD_GAP) - CARD_WIDTH * 0.15;
 
     const scanner = new ScannerBeam(scannerCanvas);
     scanner.start();

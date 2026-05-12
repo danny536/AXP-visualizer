@@ -17,8 +17,13 @@
   --color-viz-blue-500: #3C67F5;
   --color-viz-blue-800: #1F2CAE;
   --color-viz-green-400: #AECE31;
+  --color-viz-green-500: #99B72C;
   --color-viz-green-600: #84A027;
   --color-viz-green-800: #586B16;
+  --color-neutral-600: #67624C;
+  --color-warning-900: #734210;
+  --color-warning-950: #432205;
+  --color-blue-400: #618FF9;
 
   /* Fonts */
   --font-sans: var(--font-inter), sans-serif;
