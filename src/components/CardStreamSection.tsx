@@ -1160,7 +1160,7 @@ export default function CardStreamSection() {
           badge.scanComplete   = false;
           badge.tokenCount     = 0;
           if (tokenNumRef.current) tokenNumRef.current.textContent = "-0";
-          if (percentRef.current) percentRef.current.textContent = "0% smaller";
+          if (percentRef.current) percentRef.current.textContent = "0% less";
         }
 
         const stats = CARD_STATS[activeCardType];
@@ -1172,7 +1172,7 @@ export default function CardStreamSection() {
             tokenNumRef.current.textContent = `-${targetCount.toLocaleString("en-US")}`;
           }
           if (percentRef.current) {
-            percentRef.current.textContent = `${targetPct}% smaller`;
+            percentRef.current.textContent = `${targetPct}% less`;
           }
         }
       }
@@ -1351,7 +1351,7 @@ export default function CardStreamSection() {
           <span
             ref={percentRef}
             style={{ fontFamily: "var(--font-inter)", color: "#597a00", fontSize: 11, fontWeight: 700 }}
-          >0% smaller</span>
+          >0% less</span>
         </div>
       </div>
 
